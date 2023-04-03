@@ -28,7 +28,7 @@ alias grep="grep --color=auto"
 # alias adconf="$EDITOR ~/.config/awesome/"
 
 # My cool prompt
-prompt="%F{red}%B[%T]%b%f %F{cyan}%n@%m%f %F{cyan}%B%2~%b%f%# "
+prompt="%F{red}%B[%T]%b%f %F{cyan}%n@%m%f %F{cyan}%B%2~%b%f %# "
 
 # Finally, print out the current todo
 cat ~/.todo
