@@ -42,7 +42,7 @@ alias gp="git push "
 alias gs="git status "
 
 # Program aliases
-alias cm="chezmoi "
+alias cz="chezmoi "
 alias py="python "
 
 # My cool prompt
