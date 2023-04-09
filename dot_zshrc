@@ -25,12 +25,15 @@ alias grep="grep --color=auto"
 
 # Editor shortcuts - these go into the main file
 alias kconf="chezmoi edit ~/.config/kitty/kitty.conf && chezmoi apply "
-alias aconf="chezmoi edit ~/.config/awesome/rc.lua && chezmoi apply"
-alias zconf="chezmoi edit ~/.zshrc && chezmoi apply"
+alias aconf="chezmoi edit ~/.config/awesome/rc.lua && chezmoi apply "
+alias zconf="chezmoi edit ~/.zshrc && chezmoi apply "
+alias nconf="chezmoi edit ~/.config/nvim/init.vim && chezmoi apply "
 
 # Editor shortcuts - these go into the folder
 alias kdconf="chezmoi edit ~/.config/kitty/ && chezmoi edit"
 alias adconf="chezmoi edit ~/.config/awesome/ && chezmoi edit"
+alias ndconf="chezmoi edit ~/.config/nvim/ && chezmoi apply "
+
 
 # Git aliases
 alias gc="git commit -v "
