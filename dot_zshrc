@@ -32,6 +32,12 @@ alias grep="grep --color=auto"
 # alias kdconf="$EDITOR ~/.config/kitty/"
 # alias adconf="$EDITOR ~/.config/awesome/"
 
+# Git aliases
+alias gc="git commit -v "
+alias ga="git add "
+alias gp="git push "
+alias gs="git status "
+
 # My cool prompt
 prompt="%F{red}%B[%T]%b%f %F{cyan}%n@%m%f %F{cyan}%B%2~%b%f %# "
 
