@@ -41,6 +41,9 @@ alias ga="git add "
 alias gp="git push "
 alias gs="git status "
 
+# It's such a long name ughh
+alias cm="chezmoi "
+
 # My cool prompt
 prompt="%F{red}%B[%T]%b%f %F{cyan}%n@%m%f %F{cyan}%B%2~%b%f %# "
 
