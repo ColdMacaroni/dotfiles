@@ -14,6 +14,11 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 ## My config :^)
+# Save and read from history after every command
+# I hate when they get lost
+# From https://stackoverflow.com/a/842366 and https://zsh.sourceforge.io/Doc/Release/Options.html
+setopt -o sharehistory
+
 # Get colour output
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
