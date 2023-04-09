@@ -23,14 +23,14 @@ setopt -o sharehistory
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 
-# TODO: Update these to use chezmoi
 # Editor shortcuts - these go into the main file
-# alias kconf="$EDITOR ~/.config/kitty/kitty.conf"
-# alias aconf="$EDITOR ~/.config/awesome/rc.lua"
+alias kconf="chezmoi edit ~/.config/kitty/kitty.conf && chezmoi apply "
+alias aconf="chezmoi edit ~/.config/awesome/rc.lua && chezmoi apply"
+alias zconf="chezmoi edit ~/.zshrc && chezmoi apply"
 
 # Editor shortcuts - these go into the folder
-# alias kdconf="$EDITOR ~/.config/kitty/"
-# alias adconf="$EDITOR ~/.config/awesome/"
+alias kdconf="chezmoi edit ~/.config/kitty/ && chezmoi edit"
+alias adconf="chezmoi edit ~/.config/awesome/ && chezmoi edit"
 
 # Git aliases
 alias gc="git commit -v "
