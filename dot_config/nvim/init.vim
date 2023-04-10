@@ -6,15 +6,18 @@ set number relativenumber
 " Use system clipboard
 set clipboard=unnamedplus
 
+" Let mouse do whatever it wants
+set mouse=a
+
+" Ignore case when searching until an actual case is inputted
+set ignorecase smartcase
+
 " Tab things. Make all indentation 4 spaces.
 set smarttab
 set expandtab
 set tabstop=8
 set softtabstop=4
 set shiftwidth=4
-
-" Let mouse do whatever it wants
-set mouse=a
 
 " Keep cursor one line away from top and bottom edge
 set scrolloff=1
