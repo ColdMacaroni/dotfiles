@@ -1,0 +1,29 @@
+# Get colour output
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+
+# Program shortcuts
+alias cz="chezmoi "
+alias py="python "
+
+# Editor shortcuts - these go into the main file
+alias kconf="chezmoi edit ~/.config/kitty/kitty.conf && chezmoi apply "
+alias aconf="chezmoi edit ~/.config/awesome/rc.lua && chezmoi apply "
+alias zconf="chezmoi edit ~/.zshrc && chezmoi apply "
+alias nconf="chezmoi edit ~/.config/nvim/init.vim && chezmoi apply "
+
+# Editor shortcuts - these go into the folder
+alias kdconf="chezmoi edit ~/.config/kitty/ && chezmoi edit"
+alias adconf="chezmoi edit ~/.config/awesome/ && chezmoi edit"
+alias ndconf="chezmoi edit ~/.config/nvim/ && chezmoi apply "
+
+# Chezmoi shortcuts
+alias cza="chezmoi git -- add "
+alias czc="chezmoi git -- commit -v "
+alias czp="chezmoi git -- push "
+
+# Git shortcuts
+alias gc="git commit -v "
+alias ga="git add "
+alias gp="git push "
+alias gs="git status "
