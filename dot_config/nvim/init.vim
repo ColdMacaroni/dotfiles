@@ -39,8 +39,14 @@ set matchpairs+=<:>
 nnoremap <silent><esc> :noh<return><esc>
 
 " Use ctrl with arrow keys to scroll :)
-noremap <silent><C-Up> 
-noremap <silent><C-Down> 
+nmap <C-Up> <C-E>
+nmap <C-Down> <C-Y>
+
+vmap <C-Up> <C-E>
+vmap <C-Down> <C-Y>
+
+imap <C-Up> <esc><C-E>gi
+imap <C-Down> <esc><C-Y>gi
 
 " -- End remaps
 
