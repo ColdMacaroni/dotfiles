@@ -19,6 +19,9 @@ bindkey -e
 # From https://stackoverflow.com/a/842366 and https://zsh.sourceforge.io/Doc/Release/Options.html
 setopt -o sharehistory
 
+# Load profile. It should also be loaded by .xprofile, so this is for ttys and such
+[ -f ~/.profile ] && source ~/.profile
+
 # Load my aliases. I moved them to a different file to keep this one tidy
 [ -f ~/.aliases ] && source ~/.aliases
 

@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# Get my beloved nvim
+export EDITOR=nvim
