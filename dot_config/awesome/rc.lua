@@ -342,10 +342,6 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    -- Default:
-    -- awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-    --          {description = "run prompt", group = "launcher"}),
-
     awful.key({ modkey }, "d", function () awful.spawn("rofi -show run") end,
               {description = "run rofi", group = "launcher"}),
 
@@ -414,7 +410,15 @@ clientkeys = gears.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
         end ,
-        {description = "(un)maximize horizontally", group = "client"})
+        {description = "(un)maximize horizontally", group = "client"}),
+
+    -- Toggle titlebar. https://awesomewm.org/doc/api/classes/awful.titlebar.html#awful.titlebar:toggle
+    -- Thanks ChatGPT :^). You saved me from reading documentation
+    awful.key({ modkey, "Shift" }, "t",
+        function (c)
+            awful.titlebar.toggle(c)
+        end ,
+        {description = "toggle titlebar", group = "client"})
 )
 
 -- Bind all key numbers to tags.
@@ -537,10 +541,10 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 
-    -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
-    },
+    -- Disable titlebars of normal clients and dialogs
+    --{ rule_any = {type = { "normal", "dialog" }
+    --  }, properties = { titlebars_enabled = false }
+    --},
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
