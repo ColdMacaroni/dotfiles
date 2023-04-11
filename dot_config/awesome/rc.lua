@@ -49,6 +49,16 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
+-- Pick your theme, or set to nil for default
+-- Current themes: solit
+local theme = "solit"
+
+if theme then
+    theme = theme .. "/theme.lua"
+else
+    theme = gears.filesystem.get_themes_dir() .. "default/theme.lua"
+end
+
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
