@@ -365,9 +365,9 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
 
-    -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+    -- My own launch shortcuts
+    awful.key({ modkey }, "p", function() awful.spawn.with_shell("gpick -s -o | tr -d $'\n' | xclip -in -sel clip") end,
+              {description = "spawn colour picker", group = "launcher"})
 )
 
 clientkeys = gears.table.join(
