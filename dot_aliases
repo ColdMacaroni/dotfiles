@@ -17,7 +17,7 @@ alias nconf="chezmoi edit ~/.config/nvim/init.vim && chezmoi apply "
 # Folders aren't tracked by chezmoi usually.
 alias kdconf="lvim ~/.config/kitty/ && chezmoi re-add "
 alias adconf="lvim ~/.config/awesome/ && chezmoi re-add "
-alias tdconf="env EDITOR=lvim chezmoi edit ~/.config/awesome/themes && chezmoi apply "
+alias tdconf="lvim ~/.config/awesome/themes && chezmoi re-add "
 alias ndconf="lvim ~/.config/nvim/ && chezmoi re-add "
 
 # Chezmoi shortcuts
