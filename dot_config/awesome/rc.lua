@@ -229,15 +229,15 @@ awful.screen.connect_for_each_screen(function(s)
   s.mywibox:setup {
     layout = wibox.layout.align.horizontal,
     {
-          -- Left widgets
+      -- Left widgets
       layout = wibox.layout.fixed.horizontal,
       mylauncher,
       s.mytaglist,
       s.mypromptbox,
     },
-    s.mytasklist,     -- Middle widget
+    s.mytasklist, -- Middle widget
     {
-                      -- Right widgets
+      -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       mykeyboardlayout,
       wibox.widget.systray(),
@@ -363,7 +363,15 @@ globalkeys = gears.table.join(
 
   -- My own launch shortcuts
   awful.key({ modkey }, "p", function() awful.spawn.with_shell("gpick -s -o | tr -d $'\n' | xclip -in -sel clip") end,
-    { description = "spawn colour picker", group = "launcher" })
+    { description = "spawn colour picker", group = "launcher" }),
+
+  -- Brightness
+  awful.key({}, "XF86MonBrightnessDown", function()
+    awful.util.spawn("light -s sysfs/backlight/intel_backlight -U 5")
+  end),
+  awful.key({}, "XF86MonBrightnessUp", function()
+    awful.util.spawn("light -s sysfs/backlight/intel_backlight -A 5")
+  end)
 )
 
 clientkeys = gears.table.join(
@@ -517,8 +525,8 @@ awful.rules.rules = {
   {
     rule_any = {
       instance = {
-        "DTA",     -- Firefox addon DownThemAll.
-        "copyq",   -- Includes session name in class.
+        "DTA",   -- Firefox addon DownThemAll.
+        "copyq", -- Includes session name in class.
         "pinentry",
       },
       class = {
@@ -526,21 +534,21 @@ awful.rules.rules = {
         "Blueman-manager",
         "Gpick",
         "Kruler",
-        "MessageWin",    -- kalarm.
+        "MessageWin",  -- kalarm.
         "Sxiv",
-        "Tor Browser",   -- Needs a fixed window size to avoid fingerprinting by screen size.
+        "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
         "Wpa_gui",
         "veromix",
         "xtightvncviewer" },
       -- Note that the name property shown in xprop might be set slightly after creation of the client
       -- and the name shown there might not match defined rules here.
       name = {
-        "Event Tester",   -- xev.
+        "Event Tester", -- xev.
       },
       role = {
-        "AlarmWindow",     -- Thunderbird's calendar.
-        "ConfigManager",   -- Thunderbird's about:config.
-        "pop-up",          -- e.g. Google Chrome's (detached) Developer Tools.
+        "AlarmWindow",   -- Thunderbird's calendar.
+        "ConfigManager", -- Thunderbird's about:config.
+        "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
       }
     },
     properties = { floating = true }
@@ -589,15 +597,15 @@ client.connect_signal("request::titlebars", function(c)
 
   awful.titlebar(c):setup {
     {
-          -- Left
+      -- Left
       awful.titlebar.widget.iconwidget(c),
       buttons = buttons,
       layout  = wibox.layout.fixed.horizontal
     },
     {
-              -- Middle
+      -- Middle
       {
-              -- Title
+        -- Title
         align  = "center",
         widget = awful.titlebar.widget.titlewidget(c)
       },
@@ -605,7 +613,7 @@ client.connect_signal("request::titlebars", function(c)
       layout  = wibox.layout.flex.horizontal
     },
     {
-          -- Right
+      -- Right
       awful.titlebar.widget.floatingbutton(c),
       awful.titlebar.widget.maximizedbutton(c),
       awful.titlebar.widget.stickybutton(c),
