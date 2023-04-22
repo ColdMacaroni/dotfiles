@@ -367,6 +367,21 @@ globalkeys = gears.table.join(
   awful.key({ modkey, "Shift" }, "s", function() awful.spawn("flameshot gui") end,
     { description = "spawn flameshot", group = "launcher" }),
 
+  ---- Function keys
+  -- Sound
+  -- Big thanks to https://wiki.archlinux.org/title/WirePlumber#Keyboard_volume_control
+  awful.key({}, "XF86AudioMute", function()
+    awful.util.spawn(gears.filesystem.get_configuration_dir() .. "toggle-mute.sh SINK")
+  end),
+  awful.key({}, "XF86AudioLowerVolume", function()
+    awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%-")
+  end),
+  awful.key({}, "XF86AudioRaiseVolume", function()
+    awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%+")
+  end),
+  awful.key({}, "XF86AudioMicMute", function()
+    awful.util.spawn(gears.filesystem.get_configuration_dir() .. "toggle-mute.sh SOURCE")
+  end),
   -- Brightness
   awful.key({}, "XF86MonBrightnessDown", function()
     awful.util.spawn("light -s sysfs/backlight/intel_backlight -U 5")
