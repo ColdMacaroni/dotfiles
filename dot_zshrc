@@ -86,6 +86,11 @@ fi
 # From https://stackoverflow.com/a/842366 and https://zsh.sourceforge.io/Doc/Release/Options.html
 setopt -o sharehistory
 
+# Enable case insensitive completion
+# From https://unix.stackexchange.com/questions/185537/combining-zsh-s-tab-completion-with-case-insensitivity
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+setopt no_list_ambiguous
+
 # Load profile. It should also be loaded by .xprofile, so this is for ttys and such
 [ -f ~/.profile ] && source ~/.profile
 
