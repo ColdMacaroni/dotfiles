@@ -81,10 +81,12 @@ fi
 # ------- End copy from Arch wiki -------
 
 ## My config :^)
+# https://zsh.sourceforge.io/Doc/Release/Options.html
 # Save and read from history after every command
-# I hate when they get lost
-# From https://stackoverflow.com/a/842366 and https://zsh.sourceforge.io/Doc/Release/Options.html
-setopt -o sharehistory
+# Ignore lines starting with space
+# Replace duplicates with the newest command
+# Ignore command if it's the same as last
+setopt -o sharehistory hist_ignore_space hist_ignore_all_dups hist_ignore_dups
 
 # Enable case insensitive completion
 # From https://unix.stackexchange.com/questions/185537/combining-zsh-s-tab-completion-with-case-insensitivity
