@@ -69,6 +69,12 @@ terminal = "kitty -1"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
+local autostart_cmds = { "cbatticon -r 5 -c poweroff", "blueman-applet", "nm-applet" }
+
+for _, cmd in pairs(autostart_cmds) do
+  awful.spawn.single_instance(cmd)
+end
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
