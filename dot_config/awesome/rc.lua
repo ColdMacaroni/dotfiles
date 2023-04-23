@@ -388,6 +388,21 @@ globalkeys = gears.table.join(
   awful.key({}, "XF86AudioMicMute", function()
     awful.util.spawn(gears.filesystem.get_configuration_dir() .. "toggle-mute.sh SOURCE")
   end),
+
+  -- Media keys
+  awful.key({}, "XF86AudioPlay", function()
+    awful.util.spawn("playerctl play")
+  end),
+  awful.key({}, "XF86AudioPause", function()
+    awful.util.spawn("playerctl pause")
+  end),
+  awful.key({}, "XF86AudioNext", function()
+    awful.util.spawn("playerctl next")
+  end),
+  awful.key({}, "XF86AudioPrev", function()
+    awful.util.spawn("playerctl previous")
+  end),
+
   -- Brightness
   awful.key({}, "XF86MonBrightnessDown", function()
     awful.util.spawn("light -s sysfs/backlight/intel_backlight -U 5")
