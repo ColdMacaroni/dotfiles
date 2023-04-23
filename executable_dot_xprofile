@@ -2,3 +2,6 @@
 
 # Get standard profile stuff
 [ -f ~/.profile ] && source ~/.profile
+
+# Stop qt5ct from complaining
+export QT_QPA_PLATFORMTHEME=qt5ct

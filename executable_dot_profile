@@ -4,6 +4,3 @@ export EDITOR=nvim
 
 # Get cool paths
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-
-# Stop qt6ct from complaining
-export QT_QPA_PLATFORMTHEME=gtk2
