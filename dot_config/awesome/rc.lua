@@ -69,7 +69,7 @@ terminal = "kitty -1"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
-local autostart_cmds = { "cbatticon -r 5 -c poweroff", "nm-applet" }
+local autostart_cmds = { "cbatticon -r 5 -c poweroff", "nm-applet", "light-locker" }
 
 for _, cmd in pairs(autostart_cmds) do
   awful.spawn.single_instance(cmd)
@@ -371,6 +371,8 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, "p", function() awful.spawn.with_shell("gpick -s -o | tr -d $'\n' | xclip -in -sel clip") end,
     { description = "spawn colour picker", group = "launcher" }),
   awful.key({ modkey, "Shift" }, "s", function() awful.spawn("flameshot gui") end,
+    { description = "spawn flameshot", group = "launcher" }),
+  awful.key({ modkey, "Control" }, "l", function() awful.spawn("light-locker-command --lock") end,
     { description = "spawn flameshot", group = "launcher" }),
 
   ---- Function keys
