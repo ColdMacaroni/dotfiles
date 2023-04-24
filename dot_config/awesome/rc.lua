@@ -69,10 +69,10 @@ terminal = "kitty -1"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
-local autostart_cmds = { "cbatticon -r 5 -c poweroff", "nm-applet", "light-locker" }
+local autostart_script = awful.spawn(gears.filesystem.get_configuration_dir() .. "autostart.sh")
 
-for _, cmd in pairs(autostart_cmds) do
-  awful.spawn.single_instance(cmd)
+if gears.filesystem.file_readable(autostart_script) then
+  awful.spawn(autostart_script)
 end
 
 -- Default modkey.
