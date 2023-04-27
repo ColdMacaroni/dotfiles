@@ -8,7 +8,7 @@ alias py="python "
 
 # Editor shortcuts - these go into the main file
 alias kconf="chezmoi edit ~/.config/kitty/kitty.conf && chezmoi apply "
-alias aconf="EDITOR=lvim chezmoi edit ~/.config/awesome/rc.lua && chezmoi apply && awesome -k "  # Check syntax is okay
+alias aconf="lvim ~/.config/awesome/rc.lua && awesome -k; chezmoi re-add"  # Check syntax is okay
 alias zconf="chezmoi edit ~/.zshrc && chezmoi apply "
 alias alconf="chezmoi edit ~/.aliases && chezmoi apply "
 alias nconf="chezmoi edit ~/.config/nvim/init.vim && chezmoi apply "
