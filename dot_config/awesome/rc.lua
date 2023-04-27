@@ -64,6 +64,11 @@ else
   beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 end
 
+-- From https://old.reddit.com/r/awesomewm/comments/9lvkvg/increase_margin_to_the_text_inside_notifications/e79r0kd/
+-- We need to actually change this manually or it doesn't work
+naughty.config.defaults.margin = beautiful.notification_margin
+
+
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty -1"
 editor = os.getenv("EDITOR") or "nano"

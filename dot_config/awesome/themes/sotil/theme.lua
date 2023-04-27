@@ -1,6 +1,6 @@
------------------------
---    Sotil Theme    --
------------------------
+---------------------------
+----    Sotil Theme    ----
+---------------------------
 --- Beautiful docs at https://awesomewm.org/doc/api/libraries/beautiful.html
 
 -- Load system things
@@ -60,10 +60,23 @@ theme.taglist_squares_unsel                     = theme_assets.taglist_squares_u
     taglist_square_size, theme.fg_normal
 )
 
+-------------------
+-- Notifications --
+-------------------
+-- See https://awesomewm.org/doc/api/libraries/naughty.html
+
 -- Variables set for theming notifications:
--- notification_font
+theme.notification_font                         = "sans 14"
 -- notification_[bg|fg]
+
+theme.notification_bg                           = theme.bg_normal .. "e0"
+theme.notification_fg                           = "#e7e7e7"
+
 -- notification_[width|height|margin]
+
+-- Increase padding
+theme.notification_margin                       = 10;
+
 -- notification_[border_color|border_width|shape|opacity]
 
 -- Variables set for theming the menu:
