@@ -33,3 +33,6 @@ alias gc="git commit -v "
 alias gp="git push "
 alias gs="git status "
 alias gd="git diff "
+
+# Avoid accidentally deleting files
+alias mv="mv -i "
