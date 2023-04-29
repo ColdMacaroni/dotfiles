@@ -93,6 +93,10 @@ setopt -o sharehistory hist_ignore_space hist_ignore_all_dups hist_ignore_dups
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 setopt no_list_ambiguous
 
+# Enable menu select
+# From https://thevaluable.dev/zsh-completion-guide-examples/
+zstyle ':completion:*' menu select
+
 # Load profile. It should also be loaded by .xprofile, so this is for ttys and such
 [ -f ~/.profile ] && source ~/.profile
 
