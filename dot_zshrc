@@ -103,4 +103,4 @@ setopt no_list_ambiguous
 prompt="%F{red}%B[%T]%b%f %F{cyan}%n@%m%f %F{cyan}%B%2~%b%f %# "
 
 # Finally, print out the current todo
-cat ~/.todo
+[ -f ~/.todo ] && cat ~/.todo
