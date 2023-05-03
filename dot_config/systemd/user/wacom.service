@@ -1,0 +1,13 @@
+# From https://wiki.archlinux.org/title/Graphics_tablet#Permanent_configuration
+# This is ran with udev
+[Unit]
+Description=Run set up script for drawing tablets
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/bin/tablet-buttons.sh
+
+[Install]
+WantedBy=graphical-session.target
