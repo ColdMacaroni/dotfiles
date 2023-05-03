@@ -5,7 +5,7 @@ typeset -A args
 typeset -a cmds
 
 # Define autostart programs
-cmds=("cbatticon" "nm-applet" "light-locker" "picom")
+cmds=("cbatticon" "nm-applet" "opensnitch-ui" "light-locker" "picom")
 
 # Define args from programs
 args["cbatticon"]="-r 5 -c poweroff"
