@@ -416,6 +416,11 @@ globalkeys = gears.table.join(
   end),
   awful.key({}, "XF86MonBrightnessUp", function()
     awful.util.spawn("light -s sysfs/backlight/intel_backlight -A 5")
+  end),
+
+  -- Screenshot key
+  awful.key({}, "Print", function()
+    awful.util.spawn("flameshot screen")
   end)
 )
 
