@@ -36,6 +36,7 @@ alias gd="git diff "
 
 # Avoid accidentally deleting files
 alias mv="mv -i "
+alias rm="rm -v "
 
 # Copy things to x clipboard
 alias copy="xclip -in -sel clip "
