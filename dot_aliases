@@ -8,17 +8,17 @@ alias py="python "
 
 # Editor shortcuts - these go into the main file
 alias kconf="chezmoi edit ~/.config/kitty/kitty.conf && chezmoi apply "
-alias aconf="lvim ~/.config/awesome/rc.lua && awesome -k; chezmoi re-add"  # Check syntax is okay
+alias aconf="nvim ~/.config/awesome/rc.lua && awesome -k; chezmoi re-add"  # Check syntax is okay
 alias zconf="chezmoi edit ~/.zshrc && chezmoi apply "
 alias alconf="chezmoi edit ~/.aliases && chezmoi apply "
 alias nconf="chezmoi edit ~/.config/nvim/init.vim && chezmoi apply "
 
 # Editor shortcuts - these go into the folder
 # Folders aren't tracked by chezmoi usually.
-alias kdconf="lvim ~/.config/kitty/ && chezmoi re-add "
-alias adconf="lvim ~/.config/awesome/ && chezmoi re-add "
-alias tdconf="lvim ~/.config/awesome/themes && chezmoi re-add "
-alias ndconf="lvim ~/.config/nvim/ && chezmoi re-add "
+alias kdconf="nvim ~/.config/kitty/ && chezmoi re-add "
+alias adconf="nvim ~/.config/awesome/ && chezmoi re-add "
+alias tdconf="nvim ~/.config/awesome/themes && chezmoi re-add "
+alias ndconf="nvim ~/.config/nvim/ && chezmoi re-add "
 
 # Chezmoi shortcuts
 alias cza="chezmoi git -- add "
