@@ -1,5 +1,8 @@
-#!/usr/bin/sh
+#!/usr/bin/env sh
 # A reminder to sleep. You should add this to your crontab I think.
+
+# notify-send needs these
+eval "$(export | grep -E 'DBUS_SESSION_BUS_ADDRESS|DISPLAY')"
 
 response="$(notify-send -t 30000 --action=yes="Sorry" --action=no="Go away" "Look at the time." "It's really late...")"
 
