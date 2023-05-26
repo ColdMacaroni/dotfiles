@@ -15,8 +15,12 @@ local sources = {
   -- Lua
   b.formatting.stylua,
 
-  -- cpp
+  -- c/cpp
   b.formatting.clang_format,
+  b.diagnostics.clang_check,
+
+
+  -- php
   b.formatting.phpcbf,
 
   -- Python
