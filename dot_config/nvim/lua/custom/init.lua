@@ -52,10 +52,14 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
   end,
 })
 
--- Disable autocompletion for markdown
+-- Disable autocompletion for markdown, enable spell check
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = "markdown",
   callback = function()
+    -- How do write
+    vim.opt.spell = true
+
+    -- Bye completion
     local cmp = require "cmp"
     cmp.setup { enabled = false }
   end,
