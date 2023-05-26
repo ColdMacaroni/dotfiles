@@ -33,9 +33,10 @@ autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 -- Set default tabs to 4 spaces
 vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 
 -- Bring up last edited line on file
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
+vim.api.nvim_create_autocmd({ "BufRead" }, {
   callback = function()
     -- Only move to that mark if the buffer is long enough and not a commit
 
@@ -45,9 +46,18 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     local ft = vim.o.ft
 
     if mark_line <= line_len and ft ~= "gitcommit" then
-      vim.cmd "normal g'\""
+      vim.cmd 'normal g`"'
       vim.cmd "normal zz"
     end
+  end,
+})
+
+-- Disable autocompletion for markdown
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = "markdown",
+  callback = function()
+    local cmp = require "cmp"
+    cmp.setup { enabled = false }
   end,
 })
 
@@ -56,7 +66,7 @@ local conf_dir = vim.env.XDG_CONFIG_HOME or vim.env.HOME .. "/.config"
 local nvim_conf_dir = conf_dir .. "/nvim"
 
 -- TODO! This doesn't work
-vim.g.vscode_snippets_path = nvim_conf_dir .. "/nvim/mysnippets"
+vim.g.vscode_snippets_path = nvim_conf_dir .. "/mysnippets"
 
 -- Be silly
 print 'I loved when she said "it\'s nvim time" and nvimmed all over them'

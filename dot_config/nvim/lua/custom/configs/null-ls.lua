@@ -18,6 +18,13 @@ local sources = {
   -- cpp
   b.formatting.clang_format,
   b.formatting.phpcbf,
+
+  -- Python
+  b.formatting.black.with { extra_args = { "--line-length", "79" } },
+  b.diagnostics.flake8,
+
+  -- SQL
+  b.formatting.sqlfluff,
 }
 
 null_ls.setup {
