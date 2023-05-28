@@ -1,4 +1,4 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -25,7 +25,7 @@ local plugins = {
   -- override plugin configs
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = overrides.mason,
   },
 
   {
@@ -45,6 +45,23 @@ local plugins = {
     config = function()
       require("better_escape").setup()
     end,
+  },
+
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+    keys = {
+      {
+        "<leader>ll",
+        function()
+          local val = vim.diagnostic.config().virtual_text
+          vim.diagnostic.config { virtual_lines = val, virtual_text = not val }
+        end,
+        "Toggle LSP line diagnostics",
+      },
+    },
   },
 
   -- To make a plugin not be loaded
