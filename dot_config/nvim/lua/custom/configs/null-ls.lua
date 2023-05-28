@@ -25,7 +25,6 @@ local sources = {
 
   -- Python
   b.formatting.black.with { extra_args = { "--line-length", "79" } },
-  b.diagnostics.flake8,
 
   -- SQL
   b.formatting.sqlfluff,
