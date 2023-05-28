@@ -65,12 +65,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-local conf_dir = vim.env.XDG_CONFIG_HOME or vim.env.HOME .. "/.config"
-
-local nvim_conf_dir = conf_dir .. "/nvim"
-
 -- TODO! This doesn't work
+local conf_dir = vim.env.XDG_CONFIG_HOME or vim.env.HOME .. "/.config"
+local nvim_conf_dir = conf_dir .. "/nvim"
 vim.g.vscode_snippets_path = nvim_conf_dir .. "/mysnippets"
+
+-- So that :Termdebug looks better
+vim.g.termdebug_wide=1
 
 -- Be silly
 print 'I loved when she said "it\'s nvim time" and nvimmed all over them'
