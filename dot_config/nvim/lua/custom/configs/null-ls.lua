@@ -19,6 +19,12 @@ local sources = {
   b.formatting.clang_format,
   b.diagnostics.clang_check,
 
+  -- Rust
+  b.formatting.rustfmt,
+
+  -- bash
+  b.formatting.shellharden,
+  b.code_actions.shellcheck,
 
   -- php
   b.formatting.phpcbf,
