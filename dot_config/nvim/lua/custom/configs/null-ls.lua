@@ -23,7 +23,7 @@ local sources = {
   b.formatting.rustfmt,
 
   -- bash
-  b.formatting.shellharden,
+  b.formatting.shfmt,
   b.code_actions.shellcheck,
 
   -- php
