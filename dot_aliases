@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+#
 # Get colour output
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
@@ -8,7 +10,7 @@ alias py="python "
 
 # Editor shortcuts - these go into the main file
 alias kconf="chezmoi edit ~/.config/kitty/kitty.conf && chezmoi apply "
-alias aconf="nvim ~/.config/awesome/rc.lua && awesome -k; chezmoi re-add"  # Check syntax is okay
+alias aconf="nvim ~/.config/awesome/rc.lua && awesome -k; chezmoi re-add" # Check syntax is okay
 alias zconf="chezmoi edit ~/.zshrc && chezmoi apply "
 alias alconf="chezmoi edit ~/.aliases && chezmoi apply "
 alias nconf="chezmoi edit ~/.config/nvim/init.vim && chezmoi apply "
@@ -41,3 +43,7 @@ alias rm="rm -v "
 # Copy things to x clipboard
 alias copy="xclip -in -sel clip "
 alias copyprim="xclip -in -sel prim "
+
+# Source my own, non-tracked aliases
+# shellcheck disable=SC1090,SC3046
+[ -f ~/.my_aliases ] && source ~/.my_aliases
