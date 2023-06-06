@@ -72,6 +72,39 @@ local plugins = {
       require "custom.configs.vimtex"
     end,
   },
+  {
+    "tpope/vim-fugitive",
+    lazy = false,
+  },
+  {
+    "chrisbra/NrrwRgn",
+    cmd = { "NR" },
+    keys = { "<leader>n" },
+  },
+
+  {
+    "ThePrimeagen/harpoon",
+    dependencies = {
+      {
+        "nvim-lua/plenary.nvim",
+      },
+    },
+    keys = { "<leader>h" },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter",
+      },
+    },
+    config = function()
+      require "custom.configs.treesitter-context"
+    end,
+    lazy = false,
+  },
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
