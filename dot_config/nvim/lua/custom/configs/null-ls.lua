@@ -34,6 +34,10 @@ local sources = {
 
   -- SQL
   b.formatting.sqlfluff,
+
+  -- LaTeX
+  b.diagnostics.vale,
+  b.formatting.latexindent,
 }
 
 null_ls.setup {
