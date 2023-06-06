@@ -32,20 +32,22 @@ autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 ----
 
 -- Set default tabs to 4 spaces
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
+-- vim.opt.shiftwidth = 4
+-- vim.opt.tabstop = 4
 
 -- Bring up last edited line on file
 vim.api.nvim_create_autocmd({ "BufRead" }, {
   callback = function()
     -- Only move to that mark if the buffer is long enough and not a commit
+    local ft = vim.o.ft
+    if ft == "gitcommit" or ft == "fugitive" or ft == "NvimTree" then
+      return
+    end
 
     local line_len = vim.fn.line "$"
     local mark_line = vim.fn.getpos("'\"")[2]
 
-    local ft = vim.o.ft
-
-    if mark_line <= line_len and ft ~= "gitcommit" then
+    if mark_line <= line_len then
       vim.cmd 'normal g`"'
       vim.cmd "normal zz"
     end
@@ -71,7 +73,7 @@ local nvim_conf_dir = conf_dir .. "/nvim"
 vim.g.lua_snippets_path = nvim_conf_dir .. "/snippets"
 
 -- So that :Termdebug looks better
-vim.g.termdebug_wide=1
+vim.g.termdebug_wide = 1
 
 -- Be silly
 print 'I loved when she said "it\'s nvim time" and nvimmed all over them'
