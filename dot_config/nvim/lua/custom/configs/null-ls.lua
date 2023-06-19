@@ -22,6 +22,10 @@ local sources = {
   -- Rust
   b.formatting.rustfmt,
 
+  -- Ruby
+  b.formatting.rubocop,
+  b.diagnostics.rubocop,
+
   -- bash
   b.formatting.shfmt,
   b.code_actions.shellcheck,
