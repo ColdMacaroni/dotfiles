@@ -50,6 +50,12 @@ M.general = {
       "Go to TreeSitter context",
       opts = { nowait = true },
     },
+    -- Spelling
+    ["<leader>fs"] = {
+      "1z=",
+      "Change to first spelling suggestion",
+      opts = { nowait = true },
+    },
   },
 }
 
