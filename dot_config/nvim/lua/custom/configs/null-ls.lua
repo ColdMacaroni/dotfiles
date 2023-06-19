@@ -40,7 +40,7 @@ local sources = {
   b.formatting.sqlfluff,
 
   -- LaTeX
-  b.diagnostics.vale,
+  -- b.diagnostics.vale,
   b.formatting.latexindent,
 }
 
