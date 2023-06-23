@@ -104,7 +104,7 @@ zstyle ':completion:*' menu select
 [ -f ~/.aliases ] && source ~/.aliases
 
 # My cool prompt
-prompt="%F{red}%B[%T]%b%f %F{cyan}%n@%m%f %F{cyan}%B%2~%b%f %# "
+prompt="%F{red}%B[%T]%b%f %F{cyan}%n@%m%f %F{cyan}%B%2~%b%f B) "
 
 # Finally, print out the current todo
 [ -f ~/.todo ] && cat ~/.todo
