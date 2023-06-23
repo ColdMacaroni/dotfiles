@@ -31,7 +31,7 @@ alias czd="chezmoi git -- diff "
 
 # Git shortcuts
 alias ga="git add "
-alias gc="git commit -v "
+alias gc="git commit -S -v "
 alias gp="git push "
 alias gs="git status "
 alias gd="git diff "
