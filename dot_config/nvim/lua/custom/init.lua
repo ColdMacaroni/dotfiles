@@ -75,5 +75,8 @@ vim.g.lua_snippets_path = nvim_conf_dir .. "/snippets"
 -- So that :Termdebug looks better
 vim.g.termdebug_wide = 1
 
+-- I can't stop typoing it
+vim.cmd.command("W", "w")
+
 -- Be silly
 print 'I loved when she said "it\'s nvim time" and nvimmed all over them'
