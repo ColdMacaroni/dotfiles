@@ -44,7 +44,7 @@ M.general = {
       opts = { nowait = true },
     },
     ["<leader>tg"] = {
-	    function()
+      function()
         require("treesitter-context").go_to_context()
       end,
       "Go to TreeSitter context",
@@ -55,6 +55,13 @@ M.general = {
       "1z=",
       "Change to first spelling suggestion",
       opts = { nowait = true },
+    },
+
+    -- Bring up the cool menu
+    ["<leader>tf"] = {
+      "<cmd>TroubleToggle<cr>",
+      "Toggle trouble window",
+      opts = { silent = true },
     },
   },
 }
