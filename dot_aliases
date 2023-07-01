@@ -44,6 +44,9 @@ alias rm="rm -v "
 alias copy="xclip -in -sel clip "
 alias copyprim="xclip -in -sel prim "
 
+# Create todo alias if I've actually got a file for it
+[ -f ~/.todo ] && alias todo="cat ~/.todo"
+
 # Source my own, non-tracked aliases
 # shellcheck disable=SC1090,SC3046
 [ -f ~/.my_aliases ] && source ~/.my_aliases
