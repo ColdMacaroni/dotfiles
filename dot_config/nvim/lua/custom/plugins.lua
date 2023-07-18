@@ -114,9 +114,31 @@ local plugins = {
       highlight = {
         keyword = "fg",
       },
-
     },
     lazy = false,
+  },
+
+  {
+    "sophacles/vim-processing",
+    ft = { "processing" },
+  },
+
+  {
+    "numToStr/Comment.nvim",
+    keys = {
+      { "gcc", mode = "n" },
+      { "gc", mode = "v" },
+      { "gbc", mode = "n" },
+      { "gb", mode = "v" },
+    },
+    init = function()
+      require("core.utils").load_mappings "comment"
+    end,
+    config = function(_, opts)
+      require("Comment").setup(opts)
+      -- Add custom comment strings
+      require("Comment.ft").set("processing", { "// %s", "/* %s */" })
+    end,
   },
   -- To make a plugin not be loaded
   -- {
