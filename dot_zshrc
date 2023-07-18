@@ -88,6 +88,10 @@ fi
 # Ignore command if it's the same as last
 setopt -o sharehistory hist_ignore_space hist_ignore_all_dups hist_ignore_dups
 
+# Enable comments!!
+# From https://stackoverflow.com/a/11873793
+setopt interactivecomments
+
 # Enable case insensitive completion
 # From https://unix.stackexchange.com/questions/185537/combining-zsh-s-tab-completion-with-case-insensitivity
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
