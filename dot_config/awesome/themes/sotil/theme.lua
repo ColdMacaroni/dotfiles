@@ -72,11 +72,15 @@ theme.notification_font                         = "sans 14"
 
 theme.notification_bg                           = theme.bg_normal .. "e0"
 theme.notification_fg                           = "#e7e7e7"
-
 -- notification_[width|height|margin]
 
 -- Increase padding
-theme.notification_margin                       = 10;
+theme.notification_margin                       = 10
+
+-- SIze settings
+
+theme.notification_icon_size                    = dpi(64)
+theme.notification_max_width                    = 860
 
 -- notification_[border_color|border_width|shape|opacity]
 
