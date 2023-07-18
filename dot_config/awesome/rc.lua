@@ -377,7 +377,7 @@ globalkeys = gears.table.join(
     { description = "spawn colour picker", group = "launcher" }),
   awful.key({ modkey, "Shift" }, "s", function() awful.spawn("flameshot gui") end,
     { description = "spawn flameshot", group = "launcher" }),
-  awful.key({ modkey, "Control" }, "l", function() awful.spawn("light-locker-command --lock") end,
+  awful.key({ modkey, "Control" }, ";", function() awful.spawn("light-locker-command --lock") end,
     { description = "spawn flameshot", group = "launcher" }),
 
   ---- Function keys
