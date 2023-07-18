@@ -94,5 +94,7 @@ vim.g.termdebug_wide = 1
 -- I can't stop typoing it
 vim.cmd.command("W", "w")
 
+vim.o.scrolloff = 7
+
 -- Be silly
 print 'I loved when she said "it\'s nvim time" and nvimmed all over them'
