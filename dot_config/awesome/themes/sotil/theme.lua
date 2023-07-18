@@ -80,7 +80,7 @@ theme.notification_margin                       = 10
 -- SIze settings
 
 theme.notification_icon_size                    = dpi(64)
-theme.notification_max_width                    = 860
+theme.notification_max_width                    = 500
 
 -- notification_[border_color|border_width|shape|opacity]
 
