@@ -66,10 +66,10 @@ if theme then
 	local themedir = gears.filesystem.get_configuration_dir() .. "themes/" .. theme .. "/"
 	beautiful.init(themedir .. "theme.lua")
 
-  -- Try and get a wibar, need to use dofile to use absolute path
-  if gears.filesystem.file_readable(themedir .. "wibar.lua") then
-    theme_wibar = dofile(themedir .. "wibar.lua")
-  end
+	-- Try and get a wibar, need to use dofile to use absolute path
+	if gears.filesystem.file_readable(themedir .. "wibar.lua") then
+		theme_wibar = dofile(themedir .. "wibar.lua")
+	end
 else
 	beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 end
@@ -231,14 +231,14 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Each screen has its own tag table.
 	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, s, awful.layout.layouts[1])
 
-  -- Create the wibox
-  s.mywibox = awful.wibar({ position = "top", screen = s })
+	-- Create the wibox
+	s.mywibox = awful.wibar({ position = "top", screen = s })
 	local wibar_table = nil
 	-- Add wibar
 	if theme_wibar then
-    -- TODO: Join the shortcuts and screen.
-    -- wibar_table = gears.table.join(theme_wibar_table, )
-    wibar_table = theme_wibar(s)
+		-- TODO: Join the shortcuts and screen.
+		-- wibar_table = gears.table.join(theme_wibar_table, )
+		wibar_table = theme_wibar(s)
 	else
 		-- Create a promptbox for each screen
 		s.mypromptbox = awful.widget.prompt()

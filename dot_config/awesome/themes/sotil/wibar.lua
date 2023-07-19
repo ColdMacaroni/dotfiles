@@ -6,11 +6,9 @@ local awful = require("awful")
 local wibox = require("wibox")
 
 function create_wibar(s)
-  local M = {
+	local M = {}
 
-  }
-
-  return M
+	return M
 end
 
 -- Temp nil return to not mess up my awesome
