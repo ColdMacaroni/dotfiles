@@ -232,13 +232,13 @@ awful.screen.connect_for_each_screen(function(s)
 	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" }, s, awful.layout.layouts[1])
 
 	-- Create the wibox
-	s.mywibox = awful.wibar({ position = "top", screen = s })
+	s.mywibox = awful.wibar({ position = "top", screen = s, bg = beautiful.bg_wibar })
 	local wibar_table = nil
 	-- Add wibar
 	if theme_wibar then
 		-- TODO: Join the shortcuts and screen.
 		-- wibar_table = gears.table.join(theme_wibar_table, )
-		wibar_table = theme_wibar(s)
+		wibar_table = theme_wibar(beautiful, s)
 	else
 		-- Create a promptbox for each screen
 		s.mypromptbox = awful.widget.prompt()

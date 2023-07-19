@@ -27,6 +27,7 @@ theme.bg_urgent                                 = "#DE494D"
 theme.bg_minimize                               = "#333333"
 theme.bg_systray                                = theme.bg_normal
 theme.bg_systray                                = "#b7a7ba"
+theme.bg_wibar                                  = "#00000000"
 
 theme.fg_normal                                 = "#aaaaaa"
 theme.fg_focus                                  = "#ffffff"
@@ -43,6 +44,8 @@ theme.border_marked                             = "#91231c"
 -- overriding the default one when
 -- defined, the sets are:
 -- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
+theme.taglist_bg_empty                        = theme.bg_normal
+theme.taglist_bg_occupied                     = theme.bg_normal
 -- tasklist_[bg|fg]_[focus|urgent]
 -- titlebar_[bg|fg]_[normal|focus]
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
