@@ -64,6 +64,8 @@ else
   beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 end
 
+-- Check if the theme has a bar.
+
 -- From https://old.reddit.com/r/awesomewm/comments/9lvkvg/increase_margin_to_the_text_inside_notifications/e79r0kd/
 -- We need to actually change this manually or it doesn't work
 naughty.config.defaults.margin = beautiful.notification_margin
@@ -120,7 +122,7 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({
   items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-    { "open terminal", terminal }
+    { "open terminal", terminal },
   }
 })
 
@@ -614,7 +616,7 @@ awful.rules.rules = {
     rule = { class = "firefox" },
     callback = function(c)
       -- Probably move to own function
-      for i, client in ipairs(client.get()) do
+      for _, client in ipairs(client.get()) do
         if c.class == client.class and c ~= client then
           return
         end
