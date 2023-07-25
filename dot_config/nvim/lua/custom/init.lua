@@ -82,6 +82,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- Use gradle for :make on java
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = "java",
+  callback = function()
+    if vim.fn.filereadable("build.gradle") == 1 then
+      vim.bo.makeprg = "gradle run"
+    else
+      vim.bo.makeprg = "java %"
+    end
+  end,
+})
 
 -- TODO! This doesn't work
 local conf_dir = vim.env.XDG_CONFIG_HOME or vim.env.HOME .. "/.config"
@@ -95,6 +106,7 @@ vim.g.termdebug_wide = 1
 vim.cmd.command("W", "w")
 
 vim.o.scrolloff = 7
+vim.o.foldmethod = "marker"
 
 -- Be silly
 print 'I loved when she said "it\'s nvim time" and nvimmed all over them'
