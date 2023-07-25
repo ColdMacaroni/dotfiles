@@ -35,24 +35,27 @@ autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 -- vim.opt.shiftwidth = 4
 -- vim.opt.tabstop = 4
 
--- Bring up last edited line on file
-vim.api.nvim_create_autocmd({ "BufRead" }, {
-  callback = function()
-    -- Only move to that mark if the buffer is long enough and not a commit
-    local ft = vim.o.ft
-    if ft == "gitcommit" or ft == "fugitive" or ft == "NvimTree" then
-      return
-    end
-
-    local line_len = vim.fn.line "$"
-    local mark_line = vim.fn.getpos("'\"")[2]
-
-    if mark_line <= line_len then
-      vim.cmd 'normal g`"'
-      vim.cmd "normal zz"
-    end
-  end,
-})
+--{{{ Bring up last edited line on file
+-- vim.api.nvim_create_autocmd({ "BufRead" }, {
+--   callback = function()
+--     -- Only move to that mark if the buffer is long enough and not a commit
+--     local ft = vim.o.ft
+--     if ft == "gitcommit" or ft == "fugitive" or ft == "NvimTree" then
+--       return
+--     end
+--
+--     local line_len = vim.fn.line "$"
+--     local mark_line = vim.fn.getpos("'\"")[2]
+--
+--     if mark_line <= line_len then
+--       vim.cmd 'normal g`"'
+--       vim.cmd "normal zz"
+--     end
+--   end,
+-- })
+-- }}}
+-- Keep cursor on last line
+require("custom.lastplace")
 
 -- Disable autocompletion for markdown, enable spell check
 vim.api.nvim_create_autocmd({ "FileType" }, {
