@@ -3,7 +3,7 @@
 export EDITOR=nvim
 
 # Get cool paths
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 
 # Add colours to less
 # From https://github.com/haxpor/sdl2-manpage#customize-man-pages-colors
@@ -18,3 +18,6 @@ export LESS_TERMCAP_us=$'\e[04;33m' # begin underline
 
 # XDG stuff
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# GRRRR
+export BUNDLE_PATH=~/.gems
