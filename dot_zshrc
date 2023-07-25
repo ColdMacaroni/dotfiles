@@ -101,6 +101,9 @@ setopt no_list_ambiguous
 # From https://thevaluable.dev/zsh-completion-guide-examples/
 zstyle ':completion:*' menu select
 
+# Add more completions
+fpath=(~/.local/share/zsh-completions/src $fpath)
+
 # Load profile. It should also be loaded by .xprofile, so this is for ttys and such
 [ -f ~/.profile ] && source ~/.profile
 
