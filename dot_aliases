@@ -44,6 +44,9 @@ alias rm="rm -v "
 alias copy="xclip -in -sel clip "
 alias copyprim="xclip -in -sel prim "
 
+# Record the screen
+alias scr='slurp | xargs -I _ wl-screenrec -g _ -f '
+
 # Create todo alias if I've actually got a file for it
 [ -f ~/.todo ] && alias todo="cat ~/.todo"
 
