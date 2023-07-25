@@ -1,0 +1,12 @@
+image=~/pictures/glasses.png
+scaling=center
+
+font=Aroania
+
+indicator-caps-lock
+indicator-radius=72
+color=322a36
+
+inside-color=00000000
+inside-ver-color=00000000
+inside-wrong-color=e34e65a0
