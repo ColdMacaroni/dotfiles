@@ -141,6 +141,17 @@ local plugins = {
     end,
   },
 
+  {
+    "elkowar/yuck.vim",
+    ft = "yuck",
+  },
+
+  {
+    "eraserhd/parinfer-rust",
+    ft = "yuck",
+    build = "cargo build --release"
+  }
+
 -- {
 --     "glacambre/firenvim",
 --     cond = not not vim.g.started_by_firenvim,
