@@ -1,3 +1,4 @@
+;; From Hyprland wiki
 (deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
 
@@ -11,15 +12,19 @@
         (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
           (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
             (label :text "${workspace.id < 10 ? workspace.id : workspace.id - 10}")))))))
+;; End hyprland wiki
 
-
-(defwidget endstuff []
-  (box :class "endstuff" :orientation "h" :halign "end" :spacing 10
+(defwidget info []
+  (box :class "info" :orientation "h" :halign "end" :spacing 10
     (battery) date))
 
-(defpoll date :interval "10s" :class "scroll"
+
+(defpoll date :interval "10s" :class "date"
   "date '+%b %d, %Y  %H:%M'")
 
+
+; This needs an extra empty box at the end to add the little bit at the end of
+; a battery
 (defwidget battery []
   (box :orientation "h" :halign "end" :space-evenly false
     (box :class "battery ${EWW_BATTERY.BAT1.status}" :orientation "h" :halign "end"
@@ -27,26 +32,11 @@
     (box :class "battery-nub" :halign "start" :orientation "h")))
 
 
-;; This is ugly as hell but i need to know the time
-(defwindow sadtime
-           :monitor 0
-           :geometry (geometry :x "0%"
-                               :y "0px"
-                               :width "150px"
-                               :height "20px"
-                               :anchor "top right")
-           :stacking "fg"
-           ;; :reserve (struts :distance "40px" :side "top")
-           :windowtype "dock"
-           ;; :exclusive true
-           :wm-ignore false
-  (sidestuff))
-
 (defwidget bar [] 
   (centerbox :orientation "h" :class "eww_bar"
     (workspaces)
     ""
-    (endstuff)))
+    (info)))
 
 (defwindow bar 
   :monitor 0
