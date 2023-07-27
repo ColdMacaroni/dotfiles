@@ -42,6 +42,8 @@ local sources = {
   -- LaTeX
   -- b.diagnostics.vale,
   b.formatting.latexindent,
+  -- Css & stuff
+  b.formatting.prettier,
 }
 
 null_ls.setup {
