@@ -110,6 +110,7 @@ vim.cmd.command("W", "w")
 
 vim.o.scrolloff = 7
 vim.o.foldmethod = "marker"
+vim.o.clipboard = "unnamed"
 
 -- Be silly
 print 'I loved when she said "it\'s nvim time" and nvimmed all over them'

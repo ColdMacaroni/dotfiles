@@ -3,8 +3,12 @@
 local M = {}
 
 M.general = {
+  v = {
+    ["<leader>y"] = { [["+y]], "system clipboard yank", opts = { nowait = true } },
+  },
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    ["<leader>y"] = { [["+y]], "system clipboard yank", opts = { nowait = true } },
     ["<leader>gg"] = { ":G<CR>", "Open fugitive", opts = { nowait = true } },
     -- Harpoon
     ["<leader>ha"] = {
