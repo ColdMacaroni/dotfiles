@@ -1,0 +1,71 @@
+// Nightfall
+$barbg: #3b2b45;
+$curwsbg: #503c57;
+$curwsfg: #f1eabc;
+$busywsbar: #98697b;
+
+// Lascaux
+// $barbg: #352118;
+// $barbg: #151108;
+// $curwsbg: #573420;
+// $curwsfg: #E4CAB1;
+// $busywsbar: rgba(#D6A96E, 0.3);
+
+.eww_bar {
+  // background-image: linear-gradient(#503C57, #3a2c45);
+  // background-image: linear-gradient(#503C57, #5a4260);
+  background-color: $barbg;
+}
+
+.workspace-entry {
+  font-size: 1em;
+  padding: 2px 12px;
+
+  &:hover {
+    padding: 300px;
+  }
+  &.current {
+    background-color: $curwsbg;
+
+    color: $curwsfg;
+    font-weight: 700;
+  }
+
+  &.occupied {
+    // #3A2C45-top: solid 2px  #98697B;
+    border-bottom: solid 2px $busywsbar;
+  }
+}
+
+.endstuff {
+  margin-right: 10px;
+}
+
+.battery {
+  background-color: darken($color: $barbg, $amount: 15%);
+  color: white;
+  margin: 2px;
+  border-radius: 6px;
+
+  padding: 3px 8px;
+
+  // &:after {
+  //   width: 10px;
+  //   height: 10px;
+  //   // content: "hi";
+  // }
+
+  &.Charging {
+    color: #84ff69;
+  }
+}
+
+.battery-nub {
+  // background-color: red;
+  background-color: darken($color: $barbg, $amount: 15%);
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  margin: 9px 0;
+  padding: 0 3px;
+  margin-left: -4px;
+}

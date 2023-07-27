@@ -1,0 +1,63 @@
+(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
+
+(defwidget workspaces []
+  (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
+
+    (box :space-evenly false
+      (label :text "${workspaces}${current_workspace}" :visible false)
+
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            (label :text "${workspace.id < 10 ? workspace.id : workspace.id - 10}")))))))
+
+
+(defwidget endstuff []
+  (box :class "endstuff" :orientation "h" :halign "end" :spacing 10
+    (battery) date))
+
+(defpoll date :interval "10s" :class "scroll"
+  "date '+%b %d, %Y  %H:%M'")
+
+(defwidget battery []
+  (box :orientation "h" :halign "end" :space-evenly false
+    (box :class "battery ${EWW_BATTERY.BAT1.status}" :orientation "h" :halign "end"
+      "${EWW_BATTERY.BAT1.capacity}%")
+    (box :class "battery-nub" :halign "start" :orientation "h")))
+
+
+;; This is ugly as hell but i need to know the time
+(defwindow sadtime
+           :monitor 0
+           :geometry (geometry :x "0%"
+                               :y "0px"
+                               :width "150px"
+                               :height "20px"
+                               :anchor "top right")
+           :stacking "fg"
+           ;; :reserve (struts :distance "40px" :side "top")
+           :windowtype "dock"
+           ;; :exclusive true
+           :wm-ignore false
+  (sidestuff))
+
+(defwidget bar [] 
+  (centerbox :orientation "h" :class "eww_bar"
+    (workspaces)
+    ""
+    (endstuff)))
+
+(defwindow bar 
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "0px"
+                      :width "100%"
+                      :height "28px"
+                      :anchor "top center")
+  :windowtype "dock"
+  :stacking "fg"
+  :reserve (struts :distance "28px" :side "top")
+  :wm-ignore false
+  :exclusive true
+  (bar))
