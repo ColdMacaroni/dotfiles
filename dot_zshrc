@@ -110,6 +110,9 @@ fpath=(~/.local/share/zsh-completions/src $fpath)
 # Load my aliases. I moved them to a different file to keep this one tidy
 [ -f ~/.aliases ] && source ~/.aliases
 
+# Load my functions, same as above
+[ -f ~/.functions ] && source ~/.functions
+
 # My cool prompt
 prompt="%F{red}%B[%T]%b%f %F{cyan}%n@%m%f %F{cyan}%B%2~%b%f B) "
 
