@@ -149,18 +149,43 @@ local plugins = {
   {
     "eraserhd/parinfer-rust",
     ft = "yuck",
-    build = "cargo build --release"
-  }
+    build = "cargo build --release",
+  },
 
--- {
---     "glacambre/firenvim",
---     cond = not not vim.g.started_by_firenvim,
---     lazy = false,
---     build = function()
---         require("lazy").load({ plugins = "firenvim", wait = true })
---         vim.fn["firenvim#install"](0)
---     end,
--- }
+  {
+    "mbbill/undotree",
+    lazy = false,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    event = "InsertEnter",
+    config = function()
+      require "custom.configs/nvim-treesitter-textobjects"
+    end,
+    -- TODO: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    enabled = false,
+  },
+
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
+  -- {
+  --     "glacambre/firenvim",
+  --     cond = not not vim.g.started_by_firenvim,
+  --     lazy = false,
+  --     build = function()
+  --         require("lazy").load({ plugins = "firenvim", wait = true })
+  --         vim.fn["firenvim#install"](0)
+  --     end,
+  -- }
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
