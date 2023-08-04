@@ -44,6 +44,9 @@ alias rm="rm -v "
 alias xcopy="xclip -in -sel clip "
 alias xcopyprim="xclip -in -sel prim "
 
+# View stuff with kitty
+alias icat="kitty +kitten icat "
+
 # Create todo alias if I've actually got a file for it
 [ -f ~/.todo ] && alias todo="cat ~/.todo"
 
