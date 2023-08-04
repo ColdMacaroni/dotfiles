@@ -114,7 +114,10 @@ fpath=(~/.local/share/zsh-completions/src $fpath)
 [ -f ~/.functions ] && source ~/.functions
 
 # My cool prompt
-prompt="%F{red}%B[%T]%b%f %F{cyan}%n@%m%f %F{cyan}%B%2~%b%f B) "
+# prompt="%F{red}%B[%T]%b%f %F{cyan}%n@%m%f %F{cyan}%B%2~%b%f B) "
+# eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/hunk.omp.json)"
+eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/velvet.omp.json)"
+# eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/M365Princess.omp.json)"
 
 # Finally, print out the current todo
 [ -f ~/.todo ] && cat ~/.todo
