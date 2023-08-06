@@ -6,8 +6,8 @@ compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=100000000000
-SAVEHIST=50000
+HISTSIZE=500000000000
+SAVEHIST=500000000000
 setopt autocd notify
 unsetopt beep
 bindkey -e
@@ -86,7 +86,7 @@ fi
 # Ignore lines starting with space
 # Replace duplicates with the newest command
 # Ignore command if it's the same as last
-setopt -o sharehistory hist_ignore_space hist_ignore_all_dups hist_ignore_dups
+setopt -o sharehistory hist_ignore_space hist_ignore_all_dups hist_ignore_dups appendhistory
 
 # Enable comments!!
 # From https://stackoverflow.com/a/11873793
