@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{ print ($3 != "[MUTED]" ? "true" : "false") }'

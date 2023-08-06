@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
 spaces (){
-	WORKSPACE_WINDOWS=$(hyprctl workspaces -j | jq 'map({key: .id | tostring, value: .windows}) | from_entries')
-	seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc 'map(tostring) | map({id: ., windows: ($windows[.]//0)})'
+  # Thanks to https://www.baeldung.com/linux/jq-command-json
+  # hyprctl workspaces -j |  jq -Mc '. | [.[] | {"id": .id | tostring , "windows": .windows, "name": .name}]'
+  WORKSPACES="$(hyprctl workspaces -j |  jq -Mc 'map( {(.id | tostring): {"windows": .windows, "name": .name}}) | add')"
+  # TODO: Implement non 1-10 workspaces. We want 10 at min, but more are okay.
+  seq 1 10 | jq --argjson wps "$WORKSPACES" -Mc --slurp 'map(tostring) | map({id: ., windows: 0, name: .} + $wps[.])'
 }
 
 spaces
-socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
+socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | while read -r line; do
 	spaces
 done

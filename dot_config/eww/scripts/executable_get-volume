@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# Returns a json in the form {"volume": 65, "muted": true}
+wpctl get-volume @DEFAULT_AUDIO_SINK@  | awk '{print "{\"volume\": "$2 * 100 ", \"muted\": " ($3 == "[MUTED]" ? "true" : "false") "}" }'

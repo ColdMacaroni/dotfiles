@@ -1,0 +1,83 @@
+(defwindow bar 
+  :monitor 0
+  :geometry (geometry :x "0"
+                      :y "0"
+                      :width "100%"
+                      :height "20px"
+                      :anchor "top center")
+  :windowtype "dock"
+  :stacking "fg"
+  :reserve (struts :distance "20px" :side "top") ;; For X11, which i don't use but whatever
+  :wm-ignore false
+  :exclusive true
+  (centerbox :orientation "h" :class "eww_bar"
+    (box :space-evenly false :spacing 10 (workspaces) (namedworkspaces))
+    "${active_window}"
+    (info)))
+
+;; -- Listeners
+(deflisten active_window :initial "" "bash ~/projects/programming/other/eww/bar/scripts/get-window-title")
+
+;; From Hyprland wiki
+(deflisten workspacelist :initial "[]" "bash ~/projects/programming/other/eww/bar/scripts/get-workspaces")
+;; For some reason this breaks on hot reload
+(deflisten current_workspace :initial "0" "bash ~/projects/programming/other/eww/bar/scripts/get-active-workspace")
+
+;; -- Polls
+(defpoll date :interval "10s"
+  "date '+%a. %d-%m-%Y %H:%M'")
+
+(defpoll batteryicon :interval "10s"
+  "~/projects/programming/other/eww/bar/scripts/battery-icon")
+(defpoll volume :interval "5s" :initial '{"volume": 0, "muted": true}'
+  "~/projects/programming/other/eww/bar/scripts/get-volume")
+(defpoll micunmuted :interval "5s" :initial "false"
+  "~/projects/programming/other/eww/bar/scripts/get-micunmuted")
+
+;; -- Widgets
+(defwidget mic []
+    (label :visible "${micunmuted}" :class "mic-icon" :text "󰍬"))
+
+(defwidget volume []
+  (box :orientation "h"
+    :space-evenly false :spacing 2
+    :class "volume ${volume.muted ? "muted" : ""}"
+
+    ;; TODO: Make left click mute, right click pavucontrol (floating?)
+    (label :text "${volume.volume}%")
+    (label :text "${volume.muted ? "󰖁" : "󰕾"}" :class "volume-icon")))
+
+(defwidget battery [] 
+  (box :orientation "h"
+    :space-evenly false :spacing 2
+    :class "battery ${EWW_BATTERY.BAT1.status} ${EWW_BATTERY.BAT1.capacity <= 20 ? "low": ""}"
+
+    ;; TODO: Make click open power saver?
+    (label :text "${EWW_BATTERY.BAT1.capacity}%" :class "battery-percent")
+    (label :text "${batteryicon}" :class "battery-icon")))
+
+;; :onscroll "echo '{}' | sed -e s/down/-1/ -e s/up/+1/ | xargs hyprctl dispatch workspace"
+;; TODO: Add scrolling, clicking?
+(defwidget workspaces [] 
+  (box :space-evenly false :class "workspace-list" :spacing 4
+    (for wp in workspacelist
+      (button :onclick "hyprctl dispatch workspace ${wp.id}" :class "workspace-dot ${wp.name == current_workspace ? "current": ""} ${wp.windows > 0 ? "occupied" : "empty"}"))))
+        
+  
+(defwidget namedworkspaces []
+  (box :space-evenly false :class "named-workspace-list" :spacing 4
+    ;; The loop sometimes just doesn't grab these, so with this hack you can fix it
+    (label :text "${current_workspace}" :visible false)
+    (for wp in workspacelist
+      ;; TODO: Click them
+      (button :visible "${wp.id != wp.name}" :onclick "hyprctl dispatch workspace ${wp.id}"
+        :class "named-workspace ${wp.name == current_workspace ? "current" : ""}"
+        "${wp.name}"))))
+
+(defwidget info []
+  (box :class "info" :orientation "h" :halign "end" :spacing 15 :space-evenly false
+    (volume)
+    (mic)
+    (battery)
+    (label :text "${date}" :class "date")))
+ 

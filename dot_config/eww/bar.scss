@@ -1,0 +1,103 @@
+* {
+  all: unset;
+  font-family: "Cozette";
+  // font: 12px "Arial";
+  font-size: 12px;
+}
+
+$curwsfg: #e4cab1;
+$busywsbar: rgba(#d6a96e, 0.3);
+
+$barbg: #524048;
+$barbg: #1b1b1b;
+
+$unactivenamed: #444;
+$workspaces: #ffe4f0;
+$occupiedspaces: #a4e0fe;
+
+$batterycharging: #3ff363;
+$batterylow: #f34f63;
+
+$volumemuted: #a80f31;
+.eww_bar {
+  background-color: $barbg;
+  padding: 2px 4px;
+}
+
+/* Workspace dots */
+.workspace-dot {
+  background-color: $workspaces;
+  min-width: 10px;
+  min-height: 10px;
+  // padding: 2px 5px;
+  margin: 4px 0;
+  border-radius: 100%;
+
+  &.occupied {
+    background-color: $occupiedspaces;
+  }
+
+  &.current {
+    border-radius: 0;
+    padding: 0;
+    min-width: 0;
+    
+    // Make it a triangle!
+    // From https://css-tricks.com/snippets/css/css-triangle/
+    margin-bottom: -10px;
+    border-top: 10px solid transparent;
+    border-left: 5px solid $barbg;
+    border-right: 5px solid $barbg;
+  }
+}
+
+.named-workspace {
+  // TODO: Color attribute
+
+  padding: 0 4px;
+  min-width: 30px;
+  font-weight: 600;
+  background-color: $unactivenamed;
+  border-left: 5px solid darken($unactivenamed, 10%);
+
+  &.current {
+  $color: #aa5e30;
+  background-color: $color;
+  border-left: 5px solid darken($color, 15%);
+  }
+}
+
+.date {
+  font-weight: 600;
+}
+
+.battery {
+  .battery-icon {
+    // minor adjustment
+    margin-bottom: 2px;
+  }
+
+  &.low {
+    color: $batterylow;
+  }
+
+  &.Charging {
+    color: $batterycharging;
+  }
+}
+
+.volume {
+  .volume-icon {
+    margin-bottom: 2px;
+  }
+
+  &.muted {
+    color: $volumemuted;
+  }
+}
+
+.mic-icon {
+  // Small position fixes
+  margin-bottom: 2px;
+  margin-right: -2px;
+}

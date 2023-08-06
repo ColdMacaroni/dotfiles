@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+hyprctl -j activewindow | jq -rMc '.class + " " + .title'
+
+socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock -\
+  | stdbuf -o0 awk -F '>>|,' -e '/^activewindow>>/  { gsub(/\\n|\\r/," "); if ($2) {print $2 " " $3} else { print ""}}'

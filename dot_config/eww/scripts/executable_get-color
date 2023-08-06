@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# Hash the input into a hex colour
+hashed="$(printf %s "$1" | sha512sum | awk '{print $1}' | tr '[:lower:]' '[:upper:]')"
+# printf %s '#'
+echo "ibase=16; $hashed % FFFFFF" | bc | awk '{printf "%06x", $1}'

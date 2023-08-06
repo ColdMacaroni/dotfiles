@@ -1,0 +1,4 @@
+In the script for getting the json for workspaces, add a color field.
+Add this one to the yuck for the tags -> .yuck.
+
+This is how yo ucan have colour. Use the hash script.
