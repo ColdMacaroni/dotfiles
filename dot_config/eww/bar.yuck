@@ -31,7 +31,7 @@
   "~/projects/programming/other/eww/bar/scripts/battery-icon")
 (defpoll volume :interval "5s" :initial '{"volume": 0, "muted": true}'
   "~/projects/programming/other/eww/bar/scripts/get-volume")
-(defpoll micunmuted :interval "5s" :initial "false"
+(defpoll micunmuted :interval "10s" :initial "false"
   "~/projects/programming/other/eww/bar/scripts/get-micunmuted")
 
 ;; -- Widgets
