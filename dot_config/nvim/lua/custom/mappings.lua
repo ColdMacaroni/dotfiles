@@ -67,6 +67,12 @@ M.general = {
       "Toggle trouble window",
       opts = { silent = true },
     },
+
+    ["<leader>fd"] = {
+      "<cmd>Telescope lsp_document_symbols<cr>",
+      "Telescope doc symbols",
+      opts = { silent = true },
+    },
   },
 }
 
