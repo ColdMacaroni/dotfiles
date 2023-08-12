@@ -1,0 +1,8 @@
+function hconf
+  if test $EDITOR = nvim 
+    set arg -c 'lua if vim.fn.exists("NvimTreeToggle") then require("nvim-tree.api").tree.toggle {focus=false} end'
+  end
+
+  $EDITOR $arg -c 'cd ~/.config/hypr/' ~/.config/hypr/hyprland.conf
+  chezmoi re-add
+end
