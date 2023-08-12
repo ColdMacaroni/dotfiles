@@ -56,6 +56,7 @@ autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 -- }}}
 -- Keep cursor on last line
 require("custom.lastplace")
+require("custom.commands")
 
 -- Disable autocompletion for markdown, enable spell check
 vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -111,6 +112,9 @@ vim.cmd.command("W", "w")
 vim.o.scrolloff = 7
 vim.o.foldmethod = "marker"
 vim.o.clipboard = "unnamed"
+vim.o.list = true
+-- Can only call append when it's `opt` not `o`
+vim.opt.listchars:append { trail = '•' }
 
 -- Be silly
 print 'I loved when she said "it\'s nvim time" and nvimmed all over them'
