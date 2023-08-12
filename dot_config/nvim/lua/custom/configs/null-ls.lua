@@ -44,8 +44,8 @@ local sources = {
   b.formatting.latexindent,
   -- Css & stuff
   b.formatting.prettier,
-  -- Java
-  b.formatting.google_java_format,
+  -- Java - I prefer clang-format ngl
+  -- b.formatting.google_java_format,
 }
 
 null_ls.setup {
