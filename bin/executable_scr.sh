@@ -17,10 +17,18 @@ fi
 # So we'll write to a temp file in the mean time
 tmpfn="$(basename "$fn" | xargs -I _ mktemp --suffix ._)"
 
-# We wait for the child so that the user can hit ctrl-c to stop recording
-# printf '%s\0' "$(slurp)" | xargs -0 wl-screenrec -f "$tmpfn" "${@:2}" -g &
-printf '%s\0' "$(slurp)" | xargs -0 wl-screenrec -f "$tmpfn" "${@:2}" -g &
+# These 3 UPPERCASE bits taken directly from https://github.com/hyprwm/contrib/blob/main/grimblast/grimblast
+WORKSPACES="$(hyprctl monitors -j | jq -r 'map(.activeWorkspace.id)')"
+WINDOWS="$(hyprctl clients -j | jq -r --argjson workspaces "$WORKSPACES" 'map(select([.workspace.id] | inside($workspaces)))')"
+GEOM=$(echo "$WINDOWS" | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | slurp)
 
+if [ -z "$GEOM" ]; then
+  exit 1
+fi
+
+printf '%s\0' "$GEOM" | xargs -0 wl-screenrec -f "$tmpfn" "${@:2}" -g &
+
+# We wait for the child so that the user can hit ctrl-c to stop recording
 childPID=$!
 wait $childPID
 
