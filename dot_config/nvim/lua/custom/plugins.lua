@@ -177,6 +177,29 @@ local plugins = {
       }
     end,
   },
+
+  -- Very good! LSP support for nvim's lua api
+  -- { "folke/neodev.nvim", opts = {} },
+
+  -- Better wildmenu, very good readme
+  {
+    "gelguy/wilder.nvim",
+    config = function()
+      local wilder = require "wilder"
+      wilder.setup { modes = { ":", "/", "?" } }
+
+      wilder.set_option(
+        "renderer",
+        wilder.popupmenu_renderer {
+          highlighter = wilder.basic_highlighter(),
+          highlights = {
+            accent = wilder.make_hl(
+              'WilderAccent', 'Pmenu', {{a = 1}, {a = 1}, {foreground = '#f4468f'}}),
+          },
+        })
+    end,
+    keys = { ":", "/", "?" },
+  },
   -- {
   --     "glacambre/firenvim",
   --     cond = not not vim.g.started_by_firenvim,
