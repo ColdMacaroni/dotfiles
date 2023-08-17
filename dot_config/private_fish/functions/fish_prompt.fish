@@ -1,153 +1,90 @@
-set --export POSH_THEME /usr/share/oh-my-posh/themes/gruvbox.omp.json
-set --export POSH_SHELL_VERSION $FISH_VERSION
-set --global POWERLINE_COMMAND "oh-my-posh"
-set --global POSH_PID $fish_pid
-set --global CONDA_PROMPT_MODIFIER false
-set --global omp_tooltip_prompt ""
-set --global has_omp_tooltip false
-set --global omp_transient 0
+function fish_prompt
+end # In case this file gets loaded non-interactively, e.g by conda
+status is-interactive || exit
 
-# template function for context loading
-function set_poshcontext
-  return
+_tide_remove_unusable_items
+_tide_cache_variables
+_tide_parent_dirs
+source (functions --details _tide_pwd)
+
+set -l prompt_var _tide_prompt_$fish_pid
+set -U $prompt_var # Set var here so if we erase $prompt_var, bg job won't set a uvar
+
+set_color normal | read -l color_normal
+status fish-path | read -l fish_path
+
+# _tide_repaint prevents us from creating a second background job
+function _tide_refresh_prompt --on-variable $prompt_var --on-variable COLUMNS
+    set -g _tide_repaint
+    commandline -f repaint
 end
 
+if contains newline $_tide_left_items # two line prompt initialization
+    test "$tide_prompt_add_newline_before" = true && set -l add_newline '\n'
+
+    set_color $tide_prompt_color_frame_and_connection -b normal | read -l prompt_and_frame_color
+
+    set -l column_offset 5
+    test "$tide_left_prompt_frame_enabled" = true &&
+        set -l top_left_frame "$prompt_and_frame_color╭─" &&
+        set -l bot_left_frame "$prompt_and_frame_color╰─" &&
+        set column_offset (math $column_offset-2)
+    test "$tide_right_prompt_frame_enabled" = true &&
+        set -l top_right_frame "$prompt_and_frame_color─╮" &&
+        set -l bot_right_frame "$prompt_and_frame_color─╯" &&
+        set column_offset (math $column_offset-2)
+
+    eval "
 function fish_prompt
-    history merge
-    set --local omp_status_cache_temp $status
-    set --local omp_pipestatus_cache_temp $pipestatus
-    # clear from cursor to end of screen as
-    # commandline --function repaint does not do this
-    # see https://github.com/fish-shell/fish-shell/issues/8418
-    printf \e\[0J
-    if test "$omp_transient" = "1"
-      /usr/bin/oh-my-posh print transient --config $POSH_THEME --shell fish --status $omp_status_cache --pipestatus="$omp_pipestatus_cache" --execution-time $omp_duration --stack-count $omp_stack_count --shell-version $FISH_VERSION --no-status=$omp_no_exit_code
-      return
+    _tide_status=\$status _tide_pipestatus=\$pipestatus if not set -e _tide_repaint
+        jobs -q && set -lx _tide_jobs
+        $fish_path -c \"set _tide_pipestatus \$_tide_pipestatus
+set _tide_parent_dirs \$_tide_parent_dirs
+PATH=\$(string escape \"\$PATH\") CMD_DURATION=\$CMD_DURATION fish_bind_mode=\$fish_bind_mode set $prompt_var (_tide_2_line_prompt)\" &
+        builtin disown
+
+        command kill \$_tide_last_pid 2>/dev/null
+        set -g _tide_last_pid \$last_pid
     end
-    set --global omp_status_cache $omp_status_cache_temp
-    set --global omp_pipestatus_cache $omp_pipestatus_cache_temp
-    set --global omp_stack_count (count $dirstack)
-    set --global omp_duration "$CMD_DURATION$cmd_duration"
-    set --global omp_no_exit_code false
-    # check if variable set, < 3.2 case
-    if set --query omp_lastcommand; and test "$omp_lastcommand" = ""
-      set omp_duration 0
-      set omp_no_exit_code true
-    end
-    # works with fish >=3.2
-    if set --query omp_last_status_generation; and test "$omp_last_status_generation" = "$status_generation"
-      set omp_duration 0
-      set omp_no_exit_code true
-    else if test -z "$omp_last_status_generation"
-      # first execution - $status_generation is 0, $omp_last_status_generation is empty
-      set omp_no_exit_code true
-    end
-    if set --query status_generation
-      set --global --export omp_last_status_generation $status_generation
-    end
-    set_poshcontext
-    # validate if the user cleared the screen
-    set --local omp_cleared false
-    set --local last_command (history search --max 1)
-    if test "$last_command" = "clear"
-      set omp_cleared true
-    end
-    /usr/bin/oh-my-posh print primary --config $POSH_THEME --shell fish --status $omp_status_cache --pipestatus="$omp_pipestatus_cache" --execution-time $omp_duration --stack-count $omp_stack_count --shell-version $FISH_VERSION --cleared=$omp_cleared --no-status=$omp_no_exit_code
+
+    math \$COLUMNS-(string length -V \"\$$prompt_var[1][1]\$$prompt_var[1][3]\")+$column_offset | read -lx dist_btwn_sides
+
+    echo -ns $add_newline'$top_left_frame'(string replace @PWD@ (_tide_pwd) \"\$$prompt_var[1][1]\")'$prompt_and_frame_color'
+    string repeat -Nm(math max 0, \$dist_btwn_sides-\$_tide_pwd_len) '$tide_prompt_icon_connection'
+    echo -ns \"\$$prompt_var[1][3]$top_right_frame\"\n\"$bot_left_frame\$$prompt_var[1][2]$color_normal \"
 end
 
 function fish_right_prompt
-    if test "$omp_transient" = "1"
-      echo -n ""
-      set omp_transient 0
-      set has_omp_tooltip false
-      return
+    string unescape \"\$$prompt_var[1][4]$bot_right_frame$color_normal\"
+end"
+else # one line prompt initialization
+    test "$tide_prompt_add_newline_before" = true && set -l add_newline '\0'
+
+    math 5 -$tide_prompt_min_cols | read -l column_offset
+    test $column_offset -ge 0 && set column_offset "+$column_offset"
+
+    eval "
+function fish_prompt
+    _tide_status=\$status _tide_pipestatus=\$pipestatus if not set -e _tide_repaint
+        jobs -q && set -lx _tide_jobs
+        $fish_path -c \"set _tide_pipestatus \$_tide_pipestatus
+set _tide_parent_dirs \$_tide_parent_dirs
+PATH=\$(string escape \"\$PATH\") CMD_DURATION=\$CMD_DURATION fish_bind_mode=\$fish_bind_mode set $prompt_var (_tide_1_line_prompt)\" &
+        builtin disown
+
+        command kill \$_tide_last_pid 2>/dev/null
+        set -g _tide_last_pid \$last_pid
     end
-    if test -n "$omp_tooltip_prompt"
-      echo -n $omp_tooltip_prompt
-      set omp_tooltip_prompt  ""
-      set has_omp_tooltip true
-      return
-    end
-    set has_omp_tooltip false
-    /usr/bin/oh-my-posh print right --config $POSH_THEME --shell fish --status $omp_status_cache --execution-time $omp_duration --stack-count $omp_stack_count --shell-version $FISH_VERSION
+
+    math \$COLUMNS-(string length -V \"\$$prompt_var[1][1]\$$prompt_var[1][2]\")$column_offset | read -lx dist_btwn_sides
+    string replace @PWD@ (_tide_pwd) $add_newline \$$prompt_var[1][1]'$color_normal '
 end
 
-function postexec_omp --on-event fish_postexec
-  # works with fish <3.2
-  # pre and postexec not fired for empty command in fish >=3.2
-  set --global --export omp_lastcommand $argv
+function fish_right_prompt
+    string unescape \"\$$prompt_var[1][2]$color_normal\"
+end"
 end
 
-# fix tooltip not resetting on SIGINT (ctrl+c)
-function sigint_omp --on-signal INT
-    commandline --function repaint
-end
-
-function preexec_omp --on-event fish_preexec
-  if "false" = "true"
-    echo -ne "\e]133;C\a"
-  end
-end
-
-# perform cleanup so a new initialization in current session works
-if test "$(string match -e '_render_transient' $(bind \r --user 2>/dev/null))" != ''
-  bind -e \r
-end
-if test "$(string match -e '_render_tooltip' $(bind \x20 --user 2>/dev/null))" != ''
-  bind -e \x20
-end
-
-# tooltip
-
-function _render_tooltip
-  commandline --function expand-abbr
-  commandline --insert " "
-  # get the first word of command line as tip
-  set omp_tooltip_command (commandline --current-buffer | string trim -l | string split --allow-empty -f1 ' ' | string collect)
-  if not test -n "$omp_tooltip_command"
-    return
-  end
-  set omp_tooltip_prompt (/usr/bin/oh-my-posh print tooltip --config $POSH_THEME --shell fish --status $omp_status_cache --shell-version $FISH_VERSION --command $omp_tooltip_command)
-  if not test -n "$omp_tooltip_prompt"
-    if test "$has_omp_tooltip" = "true"
-      commandline --function repaint
-    end
-    return
-  end
-  commandline --function repaint
-end
-
-if test "false" = "true"
-  bind \x20 _render_tooltip -M default
-  bind \x20 _render_tooltip -M insert
-end
-
-# transient prompt
-
-function _render_transient
-  if commandline --paging-mode
-    commandline --function accept-autosuggestion
-    return
-  end
-  set omp_transient 1
-  commandline --function repaint
-  commandline --function execute
-end
-
-if test "false" = "true"
-  bind \r _render_transient -M default
-  bind \r _render_transient -M insert
-  bind \r _render_transient -M visual
-end
-
-# legacy functions
-function enable_poshtooltips
-  return
-end
-function enable_poshtransientprompt
-  return
-end
-
-if test "false" = "true"
-  echo ""
-end
+eval "function _tide_on_fish_exit --on-event fish_exit
+    set -e $prompt_var
+end"
