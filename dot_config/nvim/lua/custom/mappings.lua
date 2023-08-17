@@ -9,7 +9,7 @@ M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["<leader>y"] = { [["+y]], "system clipboard yank", opts = { nowait = true } },
-    ["<leader>gg"] = { ":G<CR>", "Open fugitive", opts = { nowait = true } },
+    ["<leader>gg"] = { "<cmd>vertical Git<CR>", "Open fugitive", opts = { nowait = true } },
     -- Harpoon
     ["<leader>ha"] = {
       function()
