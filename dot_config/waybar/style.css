@@ -4,6 +4,25 @@
     font-size: 12px;
 }
 
+.battery.charging {
+  color: #3ff363;
+}
+
+.battery.critical {
+  color: #f34f53;
+}
+
+.battery.not-charging {
+  color: #ffd84a;
+}
+
+.battery.full {
+  color: #4083e8;
+}
+
+
+/* Stuff idk about ↓ */
+
 window#waybar {
     background-color: rgba(43, 48, 59, 0.5);
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);

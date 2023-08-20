@@ -14,7 +14,7 @@
     "network",
     "temperature",
     "backlight",
-    "battery",
+    "custom/battery",
     "clock",
     "tray"
   ],
@@ -31,6 +31,7 @@
   },
   // }}}
 
+// {{{ Clock
   "clock": {
     "format": "{:%a. %d-%m-%Y %H:%M}",
     "tooltip-format": "<tt>{calendar}</tt>",
@@ -49,5 +50,14 @@
     "actions": {
       "on-click": "mode"
     }
-  }
+  },
+  // }}}
+
+  "custom/battery": {
+    "exec": "~/.config/waybar/scripts/battery-icon",
+    "interval": 5,
+    "return-type": "json",
+    "format-alt": "{alt}",
+  },
+
 }
