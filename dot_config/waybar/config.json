@@ -1,0 +1,53 @@
+// vim: ft=jsonc
+{
+  // {{{ Position
+  "layer": "top",
+  "height": 20,
+  "spacing": 4,
+  // }}}
+
+  // Choose the order of the modules
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "temperature",
+    "backlight",
+    "battery",
+    "clock",
+    "tray"
+  ],
+
+  // {{{ Window title
+  "hyprland/window": {
+    "format": "{class} {title}",
+    "rewrite": {
+      // Really nice feature
+      "(.*) — Firefox Nightly": "$1",
+      "(.*) — Mozilla Firefox": "$1"
+    },
+    "separate-outputs": true
+  },
+  // }}}
+
+  "clock": {
+    "format": "{:%a. %d-%m-%Y %H:%M}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#bc8699'><b>{}</b></span>",
+        "weeks": "<span color='#99eedd'><b>w{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ffeaea'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click": "mode"
+    }
+  }
+}
