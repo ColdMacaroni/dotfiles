@@ -45,8 +45,12 @@ else
   wpctl set-volume -l 1.5 "$wp_var" "$vol"
 fi
 
+# TODO: Remove eww stuff
+
 # It's probably better to do this rather than tryna check stuff
 sinkinfo="$(wpctl get-volume @DEFAULT_AUDIO_SINK@  | awk '{print "{\"volume\": "$2 * 100 ", \"muted\": " ($3 == "[MUTED]" ? "true" : "false") "}" }')"
 sourceinfo="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{ print ($3 != "[MUTED]" ? "true" : "false") }')"
 
 eww update volume="$sinkinfo" micunmuted="$sourceinfo"
+
+pkill -SIGRTMIN+10 waybar

@@ -100,9 +100,18 @@ wchar_t *get_alt(int capacity, wchar_t icon, char status) {
   int hours = (int)hours_left;
   int minutes = (int)((hours_left - hours) * 60);
 
-  wchar_t *str = calloc(sizeof(wchar_t), 25);
-  wmemset(str, 0, 25);
-  swprintf(str, 24, L"%d%% (%02d:%02d left) %lc ", capacity, hours, minutes, icon);
+  wchar_t *str;
+  if (hours >= 0) {
+    str =  calloc(sizeof(wchar_t), 25);
+    wmemset(str, 0, 25);
+    swprintf(str, 24, L"%d%% (%02d:%02d left) %lc ", capacity, hours, minutes, icon);
+  } else {
+    // Integer overflowed
+    str =  calloc(sizeof(wchar_t), 21);
+    wmemset(str, 0, 21);
+    swprintf(str, 20, L"%d%% (Very long) %lc ", capacity, icon);
+
+  }
 
   return str;
 }
