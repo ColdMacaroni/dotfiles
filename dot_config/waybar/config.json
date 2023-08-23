@@ -10,7 +10,7 @@
   "modules-left": ["wlr/workspaces"],
   "modules-center": ["hyprland/window"],
   "modules-right": [
-    "backlight",
+    // "backlight",
     "pulseaudio",
     "custom/microphone",
     "custom/battery",
