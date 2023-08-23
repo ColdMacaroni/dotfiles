@@ -10,6 +10,11 @@ if [ "$1" = "reload" ]; then
   kill $(pgrep "^$NAME$" | grep -v "$$" | tr $'\n' ' ')
   pkill hyprpaper
   pkill swaybg
+elif [ "$1" = "stop" ]; then
+  killall hyprpaper
+  killall swaybg
+  killall "$NAME"
+
 # Two processes, mine and pgrep itself.
 elif [ "$(pgrep "^$NAME$" | wc -l)" -gt 2 ] ; then
   echo 1>&2 "Process named $NAME already exists, bye"
@@ -36,6 +41,7 @@ wallpapers=(
   "/usr/share/hyprland/wall_anime_2K.png"
   "/usr/share/backgrounds/celeste_campfire.jpg"
   "/usr/share/backgrounds/sansplush.png"
+  "$HOME/pictures/E.png"
   "$HOME/pictures/betterhypr.png"
 )
 
