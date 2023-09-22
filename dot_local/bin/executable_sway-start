@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# My little sway start script.
+# It sets all the environment variables.
+
+
+export XCURSOR_SIZE=16
+export QT_QPA_PLATFORMTHEME=qt5ct
+export EDITOR=nvim
+export GTK_THEME=Materia-dark-compact
+
+# Needs env to preserve the variables
+exec env sway "$@"
