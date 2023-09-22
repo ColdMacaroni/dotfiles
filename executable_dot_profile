@@ -21,3 +21,5 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # GRRRR
 export BUNDLE_PATH=~/.gems
+
+export GOPATH="$XDG_DATA_HOME"/go
