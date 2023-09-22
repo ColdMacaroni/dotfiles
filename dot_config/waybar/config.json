@@ -7,10 +7,11 @@
   // }}}
 
   // Choose the order of the modules
-  "modules-left": ["wlr/workspaces"],
-  "modules-center": ["hyprland/window"],
+  "modules-left": ["sway/workspaces"],
+  // "modules-center": ["/window"],
   "modules-right": [
     // "backlight",
+    "mpris",
     "pulseaudio",
     "custom/microphone",
     "custom/battery",
@@ -98,7 +99,8 @@
   },
   // }}}
 
-  "wlr/workspaces": {
+  // {{{ Workspaces
+  "sway/workspaces": {
     "format": "{icon}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
@@ -119,4 +121,13 @@
       "10": ["eDP-1"],
     }
   },
+  // }}}
+
+  "mpris": {
+    "format": "[{title}{status_icon}]",
+    "status-icons": {
+      "paused": " (paused)",
+    },
+    "interval": 3,
+  }
 }

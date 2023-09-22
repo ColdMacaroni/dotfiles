@@ -226,9 +226,9 @@ int main(int argc, char **argv) {
   }
 
   // Longest string: 100%󰁹
-  wchar_t *text = calloc(sizeof(wchar_t), 7);
-  wmemset(text, 0, 7);
-  swprintf(text, 6, L"%d%%%lc ", bat, icon);
+  wchar_t *text = calloc(sizeof(wchar_t), 8);
+  wmemset(text, 0, 8);
+  swprintf(text, 7, L"%d%% %lc ", bat, icon);
 
   alt = get_alt(bat, icon, status);
 
