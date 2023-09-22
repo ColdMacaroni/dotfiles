@@ -8,7 +8,7 @@
 
   // Choose the order of the modules
   "modules-left": ["sway/workspaces"],
-  // "modules-center": ["/window"],
+  "modules-center": ["sway/window"],
   "modules-right": [
     // "backlight",
     "mpris",
@@ -20,8 +20,8 @@
   ],
 
   // {{{ Window title
-  "hyprland/window": {
-    "format": "{class} {title}",
+  "sway/window": {
+    "format": "{app_id} {title}",
     "rewrite": {
       // Really nice feature
       "(.*) — Firefox Nightly": "$1",
