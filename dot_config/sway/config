@@ -210,6 +210,22 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+mode "playerctl" {
+    bindsym p exec playerctl play-pause ; mode "default"
+    bindsym $mod+p exec playerctl play-pause ; mode "default"
+    bindsym n exec playerctl next ; mode "default"
+    bindsym $mod+n exec playerctl next ; mode "default"
+    bindsym Shift+n exec playerctl previous ; mode "default"
+    bindsym $mod+Shift+n exec playerctl previous ; mode "default"
+    bindsym s exec playerctl stop ; mode "default"
+    bindsym $mod+s exec playerctl stop ; mode "default"
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+p mode "playerctl"
 #
 # Status Bar:
 #
