@@ -32,10 +32,10 @@ if [ "$action" = "mute" ]; then
 else
   case "$action" in
     up)
-      vol='2.5%+'
+      vol='1%+'
       ;;
     down)
-      vol='2.5%-'
+      vol='1%-'
       ;;
     *)
       echo "Unreachable! $vol"
