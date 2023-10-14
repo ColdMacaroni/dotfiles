@@ -17,10 +17,12 @@ fi
 # So we'll write to a temp file in the mean time
 tmpfn="$(basename "$fn" | xargs -I _ mktemp --suffix ._)"
 
-# These 3 UPPERCASE bits taken directly from https://github.com/hyprwm/contrib/blob/main/grimblast/grimblast
-WORKSPACES="$(hyprctl monitors -j | jq -r 'map(.activeWorkspace.id)')"
-WINDOWS="$(hyprctl clients -j | jq -r --argjson workspaces "$WORKSPACES" 'map(select([.workspace.id] | inside($workspaces)))')"
-GEOM=$(echo "$WINDOWS" | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | slurp)
+# TODO: Doesn't work for floating windows
+
+# Getting all windows from https://gist.github.com/dshoreman/278091a17c08e30c46c7e7988b7c2f7d#all-windows-from-all-visible-workspaces
+WINDOWS="$(swaymsg -t get_tree | jq -r --argjson visible "$(swaymsg -t get_workspaces | jq -c '[.[] | select(.visible) | .id]')" '.. | (.nodes? // empty)[] | select(.type == "workspace" and .id == $visible[]) | .. | (.nodes? // empty)[] | select(.pid) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')"
+echo "$WINDOWS"
+GEOM=$(echo "$WINDOWS" | slurp)
 
 if [ -z "$GEOM" ]; then
   exit 1
