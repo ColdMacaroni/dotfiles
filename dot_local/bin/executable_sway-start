@@ -2,9 +2,8 @@
 # My little sway start script.
 # It sets all the environment variables.
 
-
 export XCURSOR_SIZE=16
-export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_STYLE_OVERRIDE=kvantum
 export EDITOR=nvim
 export GTK_THEME=Materia-dark-compact
 
