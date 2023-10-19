@@ -89,7 +89,8 @@ exec wl-paste --type text --watch cliphist store
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You wanna quit?' -B 'please' 'swaymsg exit' --background '#302025' --text  '#ffffff' --border-bottom  '#2b1a15' --button-background  '#fedade' --border '#dea9be' --font  'Inconsolata' --dismiss-button 'nope'
 #
 # Moving around:
 #
