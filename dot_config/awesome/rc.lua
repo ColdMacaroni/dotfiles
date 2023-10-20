@@ -85,7 +85,8 @@ terminal = "wezterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
-local autostart_script = awful.spawn(gears.filesystem.get_configuration_dir() .. "autostart.sh")
+local scripts = gears.filesystem.get_configuration_dir() .. "/scripts/"
+local autostart_script = scripts .. "autostart.sh"
 
 if gears.filesystem.file_readable(autostart_script) then
 	awful.spawn(autostart_script)
@@ -423,43 +424,43 @@ globalkeys = gears.table.join(
 	-- Sound
 	-- Big thanks to https://wiki.archlinux.org/title/WirePlumber#Keyboard_volume_control
 	awful.key({}, "XF86AudioMute", function()
-		awful.util.spawn(gears.filesystem.get_configuration_dir() .. "toggle-mute.sh SINK")
+		awful.spawn(scripts .. "toggle-mute.sh SINK")
 	end),
 	awful.key({}, "XF86AudioLowerVolume", function()
-		awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%-")
+		awful.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%-")
 	end),
 	awful.key({}, "XF86AudioRaiseVolume", function()
-		awful.util.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%+")
+		awful.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%+")
 	end),
 	awful.key({}, "XF86AudioMicMute", function()
-		awful.util.spawn(gears.filesystem.get_configuration_dir() .. "toggle-mute.sh SOURCE")
+		awful.spawn(scripts .. "toggle-mute.sh SOURCE")
 	end),
 
 	-- Media keys
 	awful.key({}, "XF86AudioPlay", function()
-		awful.util.spawn("playerctl play")
+		awful.spawn("playerctl play")
 	end),
 	awful.key({}, "XF86AudioPause", function()
-		awful.util.spawn("playerctl pause")
+		awful.spawn("playerctl pause")
 	end),
 	awful.key({}, "XF86AudioNext", function()
-		awful.util.spawn("playerctl next")
+		awful.spawn("playerctl next")
 	end),
 	awful.key({}, "XF86AudioPrev", function()
-		awful.util.spawn("playerctl previous")
+		awful.spawn("playerctl previous")
 	end),
 
 	-- Brightness
 	awful.key({}, "XF86MonBrightnessDown", function()
-		awful.util.spawn("light -s sysfs/backlight/intel_backlight -U 5")
+		awful.spawn("light -s sysfs/backlight/intel_backlight -U 5")
 	end),
 	awful.key({}, "XF86MonBrightnessUp", function()
-		awful.util.spawn("light -s sysfs/backlight/intel_backlight -A 5")
+		awful.spawn("light -s sysfs/backlight/intel_backlight -A 5")
 	end),
 
 	-- Screenshot key
 	awful.key({}, "Print", function()
-		awful.util.spawn("flameshot screen")
+		awful.spawn(scripts .. "screenshot.sh all")
 	end)
 )
 
