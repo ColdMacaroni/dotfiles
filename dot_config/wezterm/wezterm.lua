@@ -1,8 +1,15 @@
 local wezterm = require "wezterm"
 local config = {}
 
+--      1lI {}[] g9qCGQ ~-+=>
 
 config.font_size = 14
+config.font = wezterm.font_with_fallback {
+  "monospace",
+  -- I can't make all the icons be big so this makes them all be small.
+  "FiraCode Nerd Font Mono",
+  { family = "JoyPixels", assume_emoji_presentation = true },
+}
 
 config.use_fancy_tab_bar = true
 config.enable_scroll_bar = false
@@ -16,9 +23,9 @@ config.window_padding = { left = padx, right = padx, top = pady, bottom = pady }
 -- Puts the given hex into an rgba
 -- set_trans("#ffaaee", "50%") -> "rgba(0xff, 0xaa, 0xee, 50%)"
 local function set_trans(color, alpha)
-  local r = tonumber(color:sub(2,3), 16)
-  local g = tonumber(color:sub(4,5), 16)
-  local b = tonumber(color:sub(6,7), 16)
+  local r = tonumber(color:sub(2, 3), 16)
+  local g = tonumber(color:sub(4, 5), 16)
+  local b = tonumber(color:sub(6, 7), 16)
 
   return ("rgba(%d, %d, %d, %s)"):format(r, g, b, alpha)
 end
@@ -57,7 +64,6 @@ config.colors = {
       bg_color = theme_tbl.brights[1],
       fg_color = theme_tbl.brights[8],
     },
-
   },
 }
 
