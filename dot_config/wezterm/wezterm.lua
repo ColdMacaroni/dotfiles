@@ -1,8 +1,7 @@
 local wezterm = require "wezterm"
 local config = {}
 
---      1lI {}[] g9qCGQ ~-+=>
-
+-- TODO: Put this stuff in fontconfig...
 config.font_size = 14
 config.font = wezterm.font_with_fallback {
   "monospace",
@@ -11,7 +10,6 @@ config.font = wezterm.font_with_fallback {
   { family = "JoyPixels", assume_emoji_presentation = true },
 }
 
-config.use_fancy_tab_bar = true
 config.enable_scroll_bar = false
 
 -- Kinda vibing
@@ -33,6 +31,7 @@ end
 local theme = "Everblush"
 config.color_scheme = theme
 local theme_tbl = wezterm.color.get_builtin_schemes()[theme]
+local bg = "#0a0a0a"
 
 config.window_background_opacity = 0.9
 
@@ -40,14 +39,20 @@ config.window_background_opacity = 0.9
 config.hide_tab_bar_if_only_one_tab = true
 
 config.window_frame = {
-  font = wezterm.font { family = "Cozette" },
+  -- The char picker also uses this font, so I gotta set this stuff here as well.
+  font = wezterm.font_with_fallback {
+    "Cozette",
+    "FiraCode Nerd Font Mono",
+    { family = "JoyPixels", assume_emoji_presentation = true },
+  },
 
   active_titlebar_bg = theme_tbl.ansi[1],
   inactive_titlebar_bg = theme_tbl.ansi[1],
 }
 
 config.colors = {
-  background = "#0a0a0a",
+  background = bg,
+
   -- Highlighter effect.
   selection_fg = "rgba(0,0,0,0%)",
   selection_bg = set_trans(theme_tbl.brights[8], "15%"),
@@ -56,7 +61,7 @@ config.colors = {
     inactive_tab_edge = theme_tbl.ansi[1],
 
     active_tab = {
-      bg_color = theme_tbl.background,
+      bg_color = bg,
       fg_color = theme_tbl.foreground,
     },
 
