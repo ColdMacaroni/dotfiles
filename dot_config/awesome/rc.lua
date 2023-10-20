@@ -81,7 +81,7 @@ end
 naughty.config.defaults.margin = beautiful.notification_margin
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty -1"
+terminal = "wezterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
