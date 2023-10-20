@@ -413,12 +413,14 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "p", function()
 		awful.spawn.with_shell("gpick -s -o | tr -d $'\n' | xclip -in -sel clip")
 	end, { description = "spawn colour picker", group = "launcher" }),
+
 	awful.key({ modkey, "Shift" }, "s", function()
-		awful.spawn("flameshot gui")
-	end, { description = "spawn flameshot", group = "launcher" }),
-	awful.key({ modkey, "Control" }, ";", function()
-		awful.spawn("light-locker-command --lock")
-	end, { description = "spawn flameshot", group = "launcher" }),
+		awful.spawn(scripts .. "screenshot.sh")
+	end, { description = "screenshot area", group = "launcher" }),
+
+	-- awful.key({ modkey, "Control" }, ";", function()
+	-- 	awful.spawn("light-locker-command --lock")
+	-- end, { description = "Lock screen", group = "launcher" }),
 
 	---- Function keys
 	-- Sound
