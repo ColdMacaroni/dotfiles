@@ -415,7 +415,7 @@ globalkeys = gears.table.join(
 	end, { description = "spawn colour picker", group = "launcher" }),
 
 	awful.key({ modkey, "Shift" }, "s", function()
-		awful.spawn(scripts .. "screenshot.sh")
+		awful.spawn(scripts .. "screenshot.sh", 0)
 	end, { description = "screenshot area", group = "launcher" }),
 
 	-- awful.key({ modkey, "Control" }, ";", function()
@@ -462,7 +462,7 @@ globalkeys = gears.table.join(
 
 	-- Screenshot key
 	awful.key({}, "Print", function()
-		awful.spawn(scripts .. "screenshot.sh all")
+		awful.spawn(scripts .. "screenshot.sh all", 0)
 	end)
 )
 
