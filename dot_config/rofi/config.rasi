@@ -1,0 +1,68 @@
+@import "colours.rasi"
+
+/* No comments here, good luck and godspeed */
+
+configuration {
+    modi: "run,emoji,ssh,drun,window,clipboard:greenclip print";
+    terminal: "wezterm";
+}
+
+window {
+  width: 20%;
+  background-color: @bg;
+  padding: 10px;
+  border: 0;
+}
+
+inputbar {
+  background-color: @input-bg;
+}
+
+prompt {
+  text-color: @prompt-fg;
+}
+
+textbox-prompt-colon {
+  text-color: @prompt-fg;
+  str: ">";
+}
+
+entry {
+  placeholder: "Search...";
+  text-color: @input-fg;
+}
+
+listview {
+  lines: 4;
+  scrollbar: false;
+  spacing: 5px;
+  border: 0;
+}
+
+element-text {
+  vertical-align: 0.5;
+}
+
+element-icon {
+  size: 32px;
+}
+
+element {
+  children: [  element-icon, element-text ];
+  spacing: 5px;
+  padding: 7px;
+
+}
+
+element normal.normal, element alternate.normal {
+  background-color: @option-bg;
+  text-color: @option-fg;
+}
+
+element selected.normal {
+  border: 0 solid 0 solid 0 solid 4 solid;
+  background-color: @selected-bg;
+  border-color: @selected-border;
+  text-color: @selected-fg;
+}
+

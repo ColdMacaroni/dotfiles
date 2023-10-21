@@ -1,0 +1,17 @@
+* {
+  /* Everblush colours */
+  bg: #141b1e;
+  input-bg: @bg;
+  prompt-fg: #b3b9b8;
+  input-fg: #dadada;
+
+  option-bg: #232a2d;
+  option-fg: #b3b9b8;
+
+  /* Out of palette colour for the sake of contrast. */
+  selected-fg: #e0e2e0;
+
+  /* Got this by overlaying the border colour over the background and setting it to "lighten only" with an opacity of 25% */
+  selected-bg: #3f6b6c;
+  selected-border: #6cbfbf;
+}
