@@ -10,6 +10,9 @@ config.font = wezterm.font_with_fallback {
   { family = "JoyPixels", assume_emoji_presentation = true },
 }
 
+-- Like, i'm not missing anything important. Idc
+config.warn_about_missing_glyphs = false
+
 config.enable_scroll_bar = false
 
 -- Kinda vibing
