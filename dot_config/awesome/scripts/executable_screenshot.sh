@@ -5,7 +5,7 @@ SCPROG=shotgun
 if [ "$1" = "all" ]; then
 	$SCPROG "$fn"
 else
-	geometry="$(slop)"
+	geometry="$(slop -n 1 -l -r darken)"
 	[ -z "$geometry" ] && exit 0
 	$SCPROG -g "$geometry" "$fn"
 fi
