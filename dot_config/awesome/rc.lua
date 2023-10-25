@@ -314,6 +314,10 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 
+	-- awful.key({ modkey }, "h", awful.tag.viewprev, { description = "view previous", group = "tag" }),
+	--
+	-- awful.key({ modkey }, "l", awful.tag.viewnext, { description = "view next", group = "tag" }),
+
 	awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
 
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
@@ -333,16 +337,16 @@ globalkeys = gears.table.join(
 	end, { description = "show main menu", group = "awesome" }),
 
 	-- Layout manipulation
-	awful.key({ modkey, "Shift" }, "k", function()
-		awful.client.swap.byidx(1)
-	end, { description = "swap with next client by index", group = "client" }),
 	awful.key({ modkey, "Shift" }, "j", function()
 		awful.client.swap.byidx(-1)
 	end, { description = "swap with previous client by index", group = "client" }),
-	awful.key({ modkey, "Control" }, "j", function()
+	awful.key({ modkey, "Shift" }, "k", function()
+		awful.client.swap.byidx(1)
+	end, { description = "swap with next client by index", group = "client" }),
+	awful.key({ modkey, "Control" }, "k", function()
 		awful.screen.focus_relative(1)
 	end, { description = "focus the next screen", group = "screen" }),
-	awful.key({ modkey, "Control" }, "k", function()
+	awful.key({ modkey, "Control" }, "j", function()
 		awful.screen.focus_relative(-1)
 	end, { description = "focus the previous screen", group = "screen" }),
 	awful.key({ modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
@@ -397,7 +401,8 @@ globalkeys = gears.table.join(
 
 	-- Prompt
 	awful.key({ modkey }, "d", function()
-		awful.spawn("rofi -show drun")
+    -- Close using same shortcut that starts it
+		awful.spawn("rofi -show drun -kb-cancel Escape,Control+g,Control+bracketleft,Super+d", 0)
 	end, { description = "run rofi", group = "launcher" }),
 
 	awful.key({ modkey }, "x", function()
@@ -426,38 +431,38 @@ globalkeys = gears.table.join(
 	-- Sound
 	-- Big thanks to https://wiki.archlinux.org/title/WirePlumber#Keyboard_volume_control
 	awful.key({}, "XF86AudioMute", function()
-		awful.spawn(scripts .. "toggle-mute.sh SINK")
+		awful.spawn(scripts .. "toggle-mute.sh SINK",0)
 	end),
 	awful.key({}, "XF86AudioLowerVolume", function()
-		awful.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%-")
+		awful.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%-",0)
 	end),
 	awful.key({}, "XF86AudioRaiseVolume", function()
-		awful.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%+")
+		awful.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%+",0)
 	end),
 	awful.key({}, "XF86AudioMicMute", function()
-		awful.spawn(scripts .. "toggle-mute.sh SOURCE")
+		awful.spawn(scripts .. "toggle-mute.sh SOURCE", 0)
 	end),
 
 	-- Media keys
 	awful.key({}, "XF86AudioPlay", function()
-		awful.spawn("playerctl play")
+		awful.spawn("playerctl play", 0)
 	end),
 	awful.key({}, "XF86AudioPause", function()
-		awful.spawn("playerctl pause")
+		awful.spawn("playerctl pause", 0)
 	end),
 	awful.key({}, "XF86AudioNext", function()
-		awful.spawn("playerctl next")
+		awful.spawn("playerctl next", 0)
 	end),
 	awful.key({}, "XF86AudioPrev", function()
-		awful.spawn("playerctl previous")
+		awful.spawn("playerctl previous", 0)
 	end),
 
 	-- Brightness
 	awful.key({}, "XF86MonBrightnessDown", function()
-		awful.spawn("light -s sysfs/backlight/intel_backlight -U 5")
+		awful.spawn("light -s sysfs/backlight/intel_backlight -U 5", 0)
 	end),
 	awful.key({}, "XF86MonBrightnessUp", function()
-		awful.spawn("light -s sysfs/backlight/intel_backlight -A 5")
+		awful.spawn("light -s sysfs/backlight/intel_backlight -A 5", 0)
 	end),
 
 	-- Screenshot key
