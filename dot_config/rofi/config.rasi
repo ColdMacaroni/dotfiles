@@ -3,7 +3,7 @@
 /* No comments here, good luck and godspeed */
 
 configuration {
-    modi: "run,emoji,ssh,drun,window,clipboard:greenclip print";
+    modi: "run,emoji,ssh,drun,window";
     terminal: "wezterm";
 }
 
