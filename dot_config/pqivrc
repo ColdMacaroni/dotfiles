@@ -1,0 +1,44 @@
+[options]
+transparent-background=1
+hide-info-box=1
+window-title=pqiv $FILENAME $WIDTHx$HEIGHT [$IMAGE_NUMBER/$IMAGE_COUNT]
+
+# shows a thumbnail layout if there are multiple images.
+auto-montage-mode=1
+
+box-colors=#141b1e:#6cbfbf
+
+[keybindings]
+# TODO: vert flip & jump list (j)
+
+# vi :))
+h { shift_x(10) }
+j { shift_y(-10) }
+k { shift_y(10) }
+l { shift_x(-10) }
+
+V { flip_horizontally() }
+
+<Control>h { shift_x(50) }
+<Control>j { shift_y(-50) }
+<Control>k { shift_y(50) }
+<Control>l { shift_x(-50) }
+
+<space> { goto_file_relative(1) }
+
+<Control>l { jump_dialog() }
+
+# TODO: toggle background pattern. needed?
+b { goto_file_relative(-1) }
+
+<backslash> { rotate_right() }
+<bar> { rotate_left() }
+
+<equal>  { set_scale_level_relative(1.1) }
+
+@MONTAGE {
+    h { montage_mode_shift_x(-1) }
+    j { montage_mode_shift_y( 1) }
+    k { montage_mode_shift_y(-1) }
+    l { montage_mode_shift_x( 1) }
+}
