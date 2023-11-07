@@ -7,7 +7,13 @@ typeset -a cmds
 # Define autostart programs
 # qt has a version issue but uh this works
 #env -i DISPLAY=$DISPLAY 
-cmds=("cbatticon" "nm-applet" "opensnitch-ui" "picom")
+cmds=(
+    "cbatticon"
+    "nm-applet"
+    "opensnitch-ui"
+    "picom"
+    "mpris-proxy"      # Used for forwarding audio control. Bluetooth speaker and headphones didn't really work without it.
+)
 
 # Define args from programs
 args["cbatticon"]="-r 5 -c poweroff"
