@@ -75,4 +75,7 @@ config.colors = {
   },
 }
 
+config.exit_behavior = "CloseOnCleanExit"
+config.exit_behavior_messaging = "None"
+
 return config
