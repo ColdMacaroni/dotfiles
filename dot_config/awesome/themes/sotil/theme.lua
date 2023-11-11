@@ -17,7 +17,7 @@ local theme_path                                = gfs.get_configuration_dir() ..
 
 local theme                                     = {}
 
-theme.font                                      = "sans 12"
+theme.font                                      = "Cozette 8"
 
 -- I'm using
 
@@ -51,11 +51,20 @@ theme.taglist_bg_occupied                     = theme.bg_normal
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- mouse_finder_[color|timeout|animate_timeout|radius|factor]
 -- prompt_[fg|bg|fg_cursor|bg_cursor|font]
+
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
-theme.hotkeys_font = "monospace 12"
-theme.hotkeys_description_font = "monospace 12"
-theme.hotkeys_opacity = 0.85
-theme.hotkeys_modifiers_fg = "#5f5f5f"
+theme.hotkeys_font = "Cozette 8"
+theme.hotkeys_description_font = "Cozette 8"
+theme.hotkeys_opacity = 0.9
+theme.hotkeys_modifiers_fg = "#8ccf7e"
+theme.hotkeys_fg = "#dadada"
+theme.hotkeys_bg = "#141b1e"
+theme.hotkeys_border_color = "#232a2d"
+theme.hotkeys_border_width = 2
+theme.hotkeys_label_fg = "#6cbfbf"
+theme.hotkeys_label_bg = theme.hotkeys_bg
+theme.hotkeys_group_margin = 20
+
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
 
@@ -158,6 +167,15 @@ theme.awesome_icon                              = theme_assets.awesome_icon(
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme                                = nil
+
+--- NON-AWESOME PROPERTIES ---
+-- I use these to define my own stuff. They'll be in the table extra
+theme.extra = {
+    -- screen_decorations = function(s)
+    --     -- Do per-screen stuff like bar, widgets, etc
+    -- end
+}
+-------------------------------
 
 return theme
 
