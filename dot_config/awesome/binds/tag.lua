@@ -89,4 +89,20 @@ awful.keyboard.append_global_keybindings {
             end
         end,
     },
+
+    key {
+        modifiers = { modkey },
+        key = "i",
+        on_press = function()
+            awful.prompt.run {
+                prompt = "Rename: ",
+                textbox = awful.screen.focused().mypromptbox.widget,
+                exe_callback = function(txt)
+                    awful.screen.focused().selected_tag.name = txt
+                end,
+            }
+        end,
+        description = "rename tag",
+        group = "tag",
+    },
 }
