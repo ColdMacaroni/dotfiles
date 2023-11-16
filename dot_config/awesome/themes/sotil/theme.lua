@@ -174,6 +174,16 @@ theme.extra = {
     -- screen_decorations = function(s)
     --     -- Do per-screen stuff like bar, widgets, etc
     -- end
+
+    -- The colour of the battery widget
+    battery = {
+        Low = "#f44761", -- <=20
+        Discharging = theme.fg_normal,
+        Charging = "#58df67",
+        Unknown = "#e9e554",
+        Full = "#fdc7b2",
+        ["Not Charging"] = "#e9e554",
+    }
 }
 -------------------------------
 

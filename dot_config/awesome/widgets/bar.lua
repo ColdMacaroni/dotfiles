@@ -91,6 +91,7 @@ local function create_wibar(s)
     s.mywibox = awful.wibar {
         position = "top",
         screen = s,
+        height = 32,
         widget = {
             layout = wibox.layout.align.horizontal,
             { -- Left widgets
@@ -103,6 +104,7 @@ local function create_wibar(s)
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 mykeyboardlayout,
+                require("widgets.battery").widget,
                 wibox.widget.systray(),
                 mytextclock,
                 s.mylayoutbox,
