@@ -1,12 +1,23 @@
 local awful = require "awful"
 local key = awful.key
+local gears = require "gears"
 local usr = require "user"
+
+local update_sound = require("widgets.sound").force_update
 
 awful.keyboard.append_global_keybindings {
     key {
         key = "XF86AudioMute",
         on_press = function()
-            awful.spawn(usr.get_script "toggle-mute.sh SINK", 0)
+            awful.spawn(usr.get_script "toggle-mute.sh SINK", false)
+
+            -- Run after 0.05s because otherwise it's unreliable.
+            gears.timer {
+                timeout = 0.05,
+                autostart = true,
+                single_shot = true,
+                callback = update_sound,
+            }
         end,
         -- description = "toggle mute",
         -- group = "multimedia",
@@ -16,6 +27,7 @@ awful.keyboard.append_global_keybindings {
         key = "XF86AudioLowerVolume",
         on_press = function()
             awful.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%-", 0)
+            update_sound()
         end,
         -- description = "lower mute",
         -- group = "multimedia",
@@ -25,6 +37,7 @@ awful.keyboard.append_global_keybindings {
         key = "XF86AudioRaiseVolume",
         on_press = function()
             awful.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2.5%+", 0)
+            update_sound()
         end,
         -- description = "higher volume",
         -- group = "multimedia",

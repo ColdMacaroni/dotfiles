@@ -25,7 +25,7 @@ M.icons = {
     ["Not charging"] = "",
 }
 
-M.widget = awful.widget.watch("acpi", 1, function(_, stdout)
+M.watch_widget = awful.widget.watch("acpi", 1, function(_, stdout)
     local status = stdout:gmatch " ([%w%s]+),"()
     local bat = tonumber(stdout:gmatch "(%d+)%%"())
 
@@ -35,11 +35,13 @@ M.widget = awful.widget.watch("acpi", 1, function(_, stdout)
     M.update(bat, status)
 end)
 
-M.widget.halign = "center"
-M.widget.valign = "center"
+M.widget = wibox.container.margin(M.watch_widget, 5, 5)
+
+M.watch_widget.halign = "center"
+M.watch_widget.valign = "center"
 
 M.tooltip = awful.tooltip {
-    objects = { M.widget },
+    objects = { M.watch_widget },
 }
 
 M.update = function(val, status)
@@ -61,7 +63,7 @@ M.update = function(val, status)
         icon = icon[math.ceil(val / 100 * #icon)]
     end
 
-    M.widget.markup = ("<span foreground='%s'>%s%% %s</span>"):format(col, val, icon)
+    M.watch_widget.markup = ("<span foreground='%s'>%s%% %s</span>"):format(col, val, icon)
 end
 
 return M

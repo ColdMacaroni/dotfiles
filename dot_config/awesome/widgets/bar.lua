@@ -104,7 +104,8 @@ local function create_wibar(s)
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 mykeyboardlayout,
-                require("widgets.battery").widget,
+                require("widgets.sound").watch_widget,
+                require("widgets.battery").watch_widget,
                 wibox.widget.systray(),
                 mytextclock,
                 s.mylayoutbox,

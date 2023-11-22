@@ -183,7 +183,9 @@ theme.extra = {
         Unknown = "#e9e554",
         Full = "#fdc7b2",
         ["Not charging"] = "#e9e554",
-    }
+    },
+
+    sound = { normal = theme.fg_normal, muted = "#f44761" }
 }
 -------------------------------
 
