@@ -22,7 +22,7 @@ M.icons = {
 
     Unknown = "",
     Full = "",
-    ["Not Charging"] = "",
+    ["Not charging"] = "",
 }
 
 M.widget = awful.widget.watch("acpi", 1, function(_, stdout)

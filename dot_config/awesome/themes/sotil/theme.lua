@@ -182,7 +182,7 @@ theme.extra = {
         Charging = "#58df67",
         Unknown = "#e9e554",
         Full = "#fdc7b2",
-        ["Not Charging"] = "#e9e554",
+        ["Not charging"] = "#e9e554",
     }
 }
 -------------------------------
