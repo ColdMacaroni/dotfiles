@@ -25,7 +25,7 @@ M.icons = {
     ["Not charging"] = "",
 }
 
-M.watch_widget = awful.widget.watch("acpi", 1, function(_, stdout)
+M.widget = awful.widget.watch("acpi", 1, function(_, stdout)
     local status = stdout:gmatch " ([%w%s]+),"()
     local bat = tonumber(stdout:gmatch "(%d+)%%"())
 
@@ -35,18 +35,22 @@ M.watch_widget = awful.widget.watch("acpi", 1, function(_, stdout)
     M.update(bat, status)
 end)
 
-M.widget = wibox.container.margin(M.watch_widget, 5, 5)
-
-M.watch_widget.halign = "center"
-M.watch_widget.valign = "center"
+M.widget.halign = "center"
+M.widget.valign = "center"
 
 M.tooltip = awful.tooltip {
-    objects = { M.watch_widget },
+    objects = { M.widget },
 }
 
 M.update = function(val, status)
     if not val then
         return
+    end
+
+    -- Shutdown computer when very low
+    -- Better this than unexpected shutdown
+    if val <= 3 then
+        awful.spawn("poweroff")
     end
 
     -- TODO: ADD COLOURS TO THEME
@@ -63,7 +67,7 @@ M.update = function(val, status)
         icon = icon[math.ceil(val / 100 * #icon)]
     end
 
-    M.watch_widget.markup = ("<span foreground='%s'>%s%% %s</span>"):format(col, val, icon)
+    M.widget.markup = ("<span foreground='%s'>%s%% %s</span>"):format(col, val, icon)
 end
 
 return M

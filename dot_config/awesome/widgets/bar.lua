@@ -2,7 +2,6 @@ local awful = require "awful"
 local wibox = require "wibox"
 local beautiful = require "beautiful"
 
-
 -- Keyboard map indicator and switcher
 local mykeyboardlayout = awful.widget.keyboardlayout()
 
@@ -87,11 +86,24 @@ local function create_wibar(s)
         menu = require "widgets.menu",
     }
 
+    -- Space out my info stuff
+    local myinfo = {
+        layout = function(...)
+            local layout = wibox.layout.fixed.horizontal(...)
+
+            layout.spacing = 5
+
+            return layout
+        end,
+        require("widgets.sound").widget,
+        require("widgets.battery").widget,
+    }
+
     -- Create the wibox
     s.mywibox = awful.wibar {
         position = "top",
         screen = s,
-        height = 32,
+        -- height = 16,
         widget = {
             layout = wibox.layout.align.horizontal,
             { -- Left widgets
@@ -101,14 +113,17 @@ local function create_wibar(s)
                 s.mypromptbox,
             },
             s.mytasklist, -- Middle widget
-            { -- Right widgets
-                layout = wibox.layout.fixed.horizontal,
-                mykeyboardlayout,
-                require("widgets.sound").watch_widget,
-                require("widgets.battery").watch_widget,
-                wibox.widget.systray(),
-                mytextclock,
-                s.mylayoutbox,
+            {
+                { -- Right widgets
+                    layout = wibox.layout.fixed.horizontal,
+                    myinfo,
+                    mykeyboardlayout,
+                    wibox.widget.systray(),
+                    mytextclock,
+                    s.mylayoutbox,
+                },
+                left = 5,
+                widget = wibox.container.margin,
             },
         },
     }
