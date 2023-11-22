@@ -8,7 +8,6 @@ typeset -a cmds
 # qt has a version issue but uh this works
 #env -i DISPLAY=$DISPLAY 
 cmds=(
-    "cbatticon"
     "nm-applet"
     "opensnitch-ui"
     "picom"
@@ -16,7 +15,7 @@ cmds=(
 )
 
 # Define args from programs
-args["cbatticon"]="-r 5 -c poweroff"
+# args["program"]="args"
 
 for cmd in $cmds; do
     # Only run if not already running
