@@ -49,7 +49,7 @@ M.update = function(val, status)
 
     -- Shutdown computer when very low
     -- Better this than unexpected shutdown
-    if val <= 3 then
+    if val <= 3 and status ~= "Charging" then
         awful.spawn("poweroff")
     end
 
