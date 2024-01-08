@@ -26,10 +26,10 @@ theme.bg_focus                                  = "#5a5180"
 theme.bg_urgent                                 = "#DE494D"
 theme.bg_minimize                               = "#333333"
 theme.bg_systray                                = theme.bg_normal
-theme.bg_systray                                = "#b7a7ba"
+theme.bg_systray                                = "#352025"  -- "#b7a7ba"
 theme.bg_wibar                                  = "#00000000"
 
-theme.fg_normal                                 = "#aaaaaa"
+theme.fg_normal                                 = "#bababa"
 theme.fg_focus                                  = "#ffffff"
 theme.fg_urgent                                 = "#ffffff"
 theme.fg_minimize                               = "#ffffff"
@@ -45,7 +45,10 @@ theme.border_marked                             = "#91231c"
 -- defined, the sets are:
 -- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
 theme.taglist_bg_empty                        = theme.bg_normal
+theme.taglist_fg_empty                        = "#aaaaaa"
+
 theme.taglist_bg_occupied                     = theme.bg_normal
+theme.taglist_fg_occupied                     = "#aaaaaa"
 -- tasklist_[bg|fg]_[focus|urgent]
 -- titlebar_[bg|fg]_[normal|focus]
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
