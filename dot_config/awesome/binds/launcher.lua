@@ -7,7 +7,7 @@ awful.keyboard.append_global_keybindings {
         modifiers = { modkey },
         key = "Return",
         on_press = function()
-            awful.spawn(terminal .. " tmux new-session -t base ; new-window")
+            awful.spawn(terminal .. " -e tmux new-session -t base ; new-window")
         end,
         description = "open a tmux'd terminal",
         group = "launcher",

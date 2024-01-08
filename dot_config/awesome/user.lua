@@ -5,7 +5,7 @@ local gears = require "gears"
 -- Will be required by the main config,, all directories should end with '/'
 local config = {}
 
-config.terminal = "wezterm start"
+config.terminal = "alacritty"
 
 --  The key with the logo
 config.modkey = "Mod4"
