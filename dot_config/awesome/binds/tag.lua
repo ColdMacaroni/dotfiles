@@ -123,4 +123,42 @@ awful.keyboard.append_global_keybindings {
         description = "rename tag",
         group = "tag",
     },
+
+    key {
+        modifiers = { modkey, "Shift" },
+        key = "o",
+        on_press = function()
+            local this_screen = awful.screen.focused()
+
+            -- Wrapping around.
+            local other_screen_idx = this_screen.index % screen.count() + 1
+            local other_screen = screen[other_screen_idx]
+
+            local this_tag = this_screen.selected_tag
+            local other_tag = other_screen.selected_tag
+
+            -- Store idxs for fixing names
+            local this_tag_idx = index_of_tag(this_screen, this_tag)
+            local other_tag_idx = index_of_tag(other_screen, other_tag)
+
+            -- Make sure we don't lose focus
+            this_tag:swap(other_tag)
+            other_tag:view_only()
+            this_tag:view_only()
+
+            -- Make names match index
+            local function fix_name(t, correct_idx)
+                local num = tonumber(t.name, 10)
+                -- Only change if it's a default name (0-9)
+                if num and num < 10 then
+                    t.name = tostring(correct_idx % 10)
+                end
+            end
+
+            fix_name(this_tag, other_tag_idx)
+            fix_name(other_tag, this_tag_idx)
+        end,
+        description = "swap tag with next screen's",
+        group = "tag",
+    },
 }
