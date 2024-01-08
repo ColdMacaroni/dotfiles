@@ -1,6 +1,7 @@
 local awful = require "awful"
 local wibox = require "wibox"
 local beautiful = require "beautiful"
+local gears = require "gears"
 
 -- Keyboard map indicator and switcher
 local mykeyboardlayout = awful.widget.keyboardlayout()
@@ -129,5 +130,13 @@ local function create_wibar(s)
         },
     }
 end
+
+-- Force update after a bit bc it fails on boot
+gears.timer {
+    timeout = 1,
+    autostart = true,
+    callback = require("widgets.sound").force_update,
+    single_shot = true,
+}
 
 return create_wibar
