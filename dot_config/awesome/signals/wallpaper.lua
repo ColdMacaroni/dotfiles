@@ -1,5 +1,6 @@
 local beautiful = require "beautiful"
-local gears = require "gears"
+local wibox = require "wibox"
+local awful = require "awful"
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -9,7 +10,22 @@ local function set_wallpaper(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.maximized(wallpaper, s, true)
+
+        awful.wallpaper {
+            screen = s,
+            widget = {
+                {
+                    image     = wallpaper,
+                    upscale   = false,
+                    downscale = true,
+                    widget    = wibox.widget.imagebox,
+                },
+                valign = "center",
+                halign = "center",
+                tiled  = false,
+                widget = wibox.container.tile,
+            }
+        }
     end
 end
 
