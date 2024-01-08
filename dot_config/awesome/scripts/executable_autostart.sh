@@ -12,10 +12,12 @@ cmds=(
     "opensnitch-ui"
     "picom"
     "mpris-proxy"      # Used for forwarding audio control. Bluetooth speaker and headphones didn't really work without it.
+    "emacs"
 )
 
 # Define args from programs
 # args["program"]="args"
+args["emacs"]="--daemon"
 
 for cmd in $cmds; do
     # Only run if not already running
