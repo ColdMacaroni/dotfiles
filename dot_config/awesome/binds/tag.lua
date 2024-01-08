@@ -3,6 +3,14 @@
 local awful = require "awful"
 local key = awful.key
 
+local function index_of_tag(s, t)
+    for idx, other_t in ipairs(s.tags) do
+        if other_t == t then
+            return idx
+        end
+    end
+end
+
 awful.keyboard.append_global_keybindings {
 
     -- awful.key({ modkey }, "h", awful.tag.viewprev, { description = "view previous", group = "tag" }),
@@ -98,6 +106,16 @@ awful.keyboard.append_global_keybindings {
                 prompt = "Rename: ",
                 textbox = awful.screen.focused().mypromptbox.widget,
                 exe_callback = function(txt)
+                    -- Use tag index if name is empty
+                    if txt == "" then
+                        txt = tostring(
+                            index_of_tag(
+                                awful.screen.focused(),
+                                awful.screen.focused().selected_tag
+                            ) % 10
+                        )
+                    end
+
                     awful.screen.focused().selected_tag.name = txt
                 end,
             }
