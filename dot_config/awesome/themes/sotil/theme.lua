@@ -143,6 +143,16 @@ theme.titlebar_maximized_button_normal_active   = theme_path .. "titlebar/maximi
 theme.titlebar_maximized_button_focus_active    = theme_path .. "titlebar/maximized_focus_active.png"
 
 theme.wallpaper                                 = theme_path .. "wallpaper"
+-- Stack of wallpapers for each screen.
+-- local wallpapers = { os.getenv("HOME") .. "/pictures/squarecry.png"  ,"/usr/share/backgrounds/celeste_campfire.jpg" }
+-- theme.wallpaper                                 = function(_)
+--     local wall = wallpapers[#wallpapers]
+--     if #wallpapers > 1 then
+--         wallpapers[#wallpapers] = nil
+--     end
+--
+--     return wall
+-- end
 
 -- You can use your own layout icons like this:
 theme.layout_fairh                              = theme_path .. "layouts/fairhw.png"
