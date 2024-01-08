@@ -40,7 +40,7 @@ M.update = function(volume, muted)
         icon = M.icons.normal[math.ceil(volume / 100 * #M.icons.normal)]
     end
 
-    M.widget.markup = ("<span foreground='%s'>%s%% %s</span>"):format(col, volume, icon)
+    M.widget.markup = ("<span foreground='%s'>%.0f%% %s</span>"):format(col, volume, icon)
 end
 
 return M
