@@ -95,6 +95,7 @@ local function create_wibar(s)
 
             return layout
         end,
+        require("widgets.screentime").widget,
         require("widgets.sound").widget,
         require("widgets.battery").widget,
     }
