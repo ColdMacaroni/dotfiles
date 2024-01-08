@@ -91,7 +91,7 @@ local function create_wibar(s)
         layout = function(...)
             local layout = wibox.layout.fixed.horizontal(...)
 
-            layout.spacing = 5
+            layout.spacing = 10
 
             return layout
         end,
