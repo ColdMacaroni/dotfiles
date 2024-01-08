@@ -8,6 +8,10 @@ auto-montage-mode=1
 
 box-colors=#141b1e:#6cbfbf
 
+command-1=|copy.sh; notify-send "image copied"
+command-2= awesome-client 'require"awful".wallpaper { screen = require"awful".screen.focused(), widget = { { image = "$1", upscale = false, downscale = true, widget = require"wibox".widget.imagebox},valign = "center", halign = "center", tiled = false, widget = require "wibox".container.tile}}'
+command-3=-xargs echo
+
 [keybindings]
 # TODO: vert flip & jump list (j)
 
@@ -41,4 +45,14 @@ b { goto_file_relative(-1) }
     j { montage_mode_shift_y( 1) }
     k { montage_mode_shift_y(-1) }
     l { montage_mode_shift_x( 1) }
+
+    1 { numeric_command(1) }
+    2 { numeric_command(2) }
+    3 { numeric_command(3) }
+    4 { numeric_command(4) }
+    5 { numeric_command(5) }
+    6 { numeric_command(6) }
+    7 { numeric_command(7) }
+    8 { numeric_command(8) }
+    9 { numeric_command(9) }
 }
