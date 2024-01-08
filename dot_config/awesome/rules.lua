@@ -63,24 +63,6 @@ ruled.client.connect_signal("request::rules", function()
         rule_any = { type = { "normal", "dialog" } },
         properties = { titlebars_enabled = false },
     }
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    ruled.client.append_rule {
-        rule = { class = "firefox" },
-        callback = function(c)
-            -- Probably move to own function
-            for _, client in ipairs(client.get()) do
-                if c.class == client.class and c ~= client then
-                    return
-                end
-            end
-
-            -- XXX: Change to use indexed awful.tags or smth
-            --      or try to find tag name firefox/www and then nil
-            local tag = awful.tag.find_by_name(nil, "2")
-            c:move_to_tag(tag)
-        end,
-    }
 end)
 
 ruled.notification.connect_signal("request::rules", function()
