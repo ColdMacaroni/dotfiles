@@ -9,7 +9,7 @@
 # 8
 # 9
 # 10
-exit
+# exit
 xsetwacom --set 'Tablet Monitor Pad pad' Button 1 "key +shift"
 xsetwacom --set 'Tablet Monitor Pad pad' Button 2 "key ctrl z"
 xsetwacom --set 'Tablet Monitor Pad pad' Button 3 "key +ctrl"

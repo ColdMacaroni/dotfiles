@@ -9,7 +9,7 @@ PartOf=graphical-session.target
 Type=oneshot
 # Ensure table is properly loaded, failed when done too early
 ExecStartPre=/bin/sleep 1
-ExecStart=%h/bin/tablet-buttons.sh
+ExecStart=%h/bin/huion.sh
 
 [Install]
 WantedBy=graphical-session.target
