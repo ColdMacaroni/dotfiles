@@ -3,6 +3,5 @@
 # Get standard profile stuff
 [ -f ~/.profile ] && source ~/.profile
 
-export QT_STYLE_OVERRIDE=kvantum
 export EDITOR=nvim
 export GTK_THEME=Materia-dark-compact
