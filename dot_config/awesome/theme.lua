@@ -18,6 +18,7 @@ for _, name in ipairs {
     "layout",
     "screen",
     "multimedia",
+    "mpris",
     "tag",
     "tmux: misc",
     "tmux: sessions",

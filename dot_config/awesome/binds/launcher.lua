@@ -44,12 +44,12 @@ awful.keyboard.append_global_keybindings {
     },
 
     key {
-        modifiers = { modkey },
+        modifiers = { modkey, "Shift" },
         key = "p",
         on_press = function()
-            awful.spawn.with_shell "colorpicker --one-shot --preview --short | tr -d '\\n' | xclip -in -sel clip"
+            awful.spawn.with_shell "xcolor -s primary"
         end,
-        description = "spawn colour picker",
+        description = "toggle colour picker",
         group = "launcher",
     },
 

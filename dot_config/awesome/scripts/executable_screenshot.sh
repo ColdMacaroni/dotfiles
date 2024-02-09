@@ -3,11 +3,22 @@
 fn="$HOME/pictures/screenshots/$(date +'%Y-%m-%d_%H-%M-%S.%N').png"
 SCPROG=shotgun
 if [ "$1" = "all" ]; then
-	$SCPROG "$fn"
+    $SCPROG "$fn"
 else
-	geometry="$(slop -n 1 -l -r darken)"
-	[ -z "$geometry" ] && exit 0
-	$SCPROG -g "$geometry" "$fn"
+    # This conditional shader is useful for when picom isn't running,
+    # otherwise it'd just not run
+
+    # shellcheck disable=2037
+    get_geo="slop -n 1"
+
+    if pgrep picom > /dev/null 2>&1; then 
+        # shellcheck disable=2037
+        get_geo="slop -n 1 -l -r darken"
+    fi
+
+    geometry="$($get_geo)"
+    [ -z "$geometry" ] && exit 0
+    $SCPROG -g "$geometry" "$fn"
 fi
 
 xclip -in -sel clip -t image/png <"$fn"

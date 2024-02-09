@@ -55,33 +55,39 @@ awful.keyboard.append_global_keybindings {
     -- Media keys
     key {
         key = "XF86AudioPlay",
-        on_press = function()
-            awful.spawn("playerctl play", 0)
-        end,
+        on_press = require "widgets.mpris".play,
         -- description = "play media",
         -- group = "multimedia",
     },
     key {
         key = "XF86AudioPause",
-        on_press = function()
-            awful.spawn("playerctl pause", 0)
-        end,
+        on_press = require "widgets.mpris".pause,
         -- description = "pause media",
         -- group = "multimedia",
     },
     key {
         key = "XF86AudioNext",
-        on_press = function()
-            awful.spawn("playerctl next", 0)
-        end,
+        on_press = require "widgets.mpris".next,
         -- description = "next media",
         -- group = "multimedia",
     },
     key {
         key = "XF86AudioPrev",
-        on_press = function()
-            awful.spawn("playerctl previous", 0)
-        end,
+        on_press = require "widgets.mpris".prev,
+        -- description = "previous media",
+        -- group = "multimedia",
+    },
+
+    key {
+        key = "XF86AudioRewind",
+        on_press = function() require "widgets.mpris".position("1.5-") end,
+        -- description = "previous media",
+        -- group = "multimedia",
+    },
+
+    key {
+        key = "XF86AudioForward",
+        on_press = function() require "widgets.mpris".position("1.5+") end,
         -- description = "previous media",
         -- group = "multimedia",
     },

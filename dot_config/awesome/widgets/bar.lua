@@ -96,9 +96,11 @@ local function create_wibar(s)
 
             return layout
         end,
+        require("widgets.mpris").widget,
         require("widgets.screentime").widget,
         require("widgets.sound").widget,
         require("widgets.battery").widget,
+        mykeyboardlayout,
     }
 
     -- Create the wibox
@@ -112,6 +114,7 @@ local function create_wibar(s)
                 layout = wibox.layout.fixed.horizontal,
                 mylauncher,
                 s.mytaglist,
+                require("widgets.mode").widget,
                 s.mypromptbox,
             },
             s.mytasklist, -- Middle widget
@@ -119,7 +122,6 @@ local function create_wibar(s)
                 { -- Right widgets
                     layout = wibox.layout.fixed.horizontal,
                     myinfo,
-                    mykeyboardlayout,
                     wibox.widget.systray(),
                     mytextclock,
                     s.mylayoutbox,

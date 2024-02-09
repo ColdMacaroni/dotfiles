@@ -11,7 +11,6 @@ cmds=(
     "nm-applet"
     "opensnitch-ui"
     "picom"
-    "mpris-proxy"      # Used for forwarding audio control. Bluetooth speaker and headphones didn't really work without it.
     "emacs"
 )
 
